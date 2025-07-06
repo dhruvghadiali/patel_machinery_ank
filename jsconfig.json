@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ],
+            "@ShadcnComponents/*": [
+                "./src/components/ui/*"
+            ],
+        }
+    },
+    "include": ["./src/**/*"]
+}
