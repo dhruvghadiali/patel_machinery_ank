@@ -1,4 +1,4 @@
-import { ThemeSwitch } from "@ShadcnComponents/theme-switch";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
 
 import logoImage from "@Assets/images/logo.png";
 import LargeScreenNavigationMenuComponent from "@Components/navigationMenu/largeScreenNavigationMenu";

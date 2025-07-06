@@ -11,7 +11,7 @@ import {
 
 function LargeScreenNavigationMenuComponent({ navigationLinks }) {
   return (
-    <NavigationMenu viewport={false} className="max-md:hidden">
+    <NavigationMenu viewport={false} className="max-lg:hidden">
       <NavigationMenuList className="gap-2">
         {navigationLinks.map((link, index) => (
           <NavigationMenuItem key={index}>

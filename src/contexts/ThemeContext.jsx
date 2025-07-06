@@ -14,11 +14,18 @@ export const useTheme = () => {
   return context
 }
 
-export const ThemeProvider = ({ children, defaultTheme = 'system', ...props }) => {
+export const ThemeProvider = ({ children, defaultTheme = 'light', ...props }) => {
   const [theme, setTheme] = useState(() => {
-    // Get theme from localStorage or use default
+    // Safely get theme from localStorage or use default
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') || defaultTheme
+      try {
+        const storedTheme = localStorage.getItem('theme')
+        if (storedTheme && ['light', 'dark', 'system'].includes(storedTheme)) {
+          return storedTheme
+        }
+      } catch (error) {
+        console.warn('Failed to read theme from localStorage:', error)
+      }
     }
     return defaultTheme
   })
@@ -42,14 +49,26 @@ export const ThemeProvider = ({ children, defaultTheme = 'system', ...props }) =
 
   const value = {
     theme,
-    setTheme: (theme) => {
-      localStorage.setItem('theme', theme)
-      setTheme(theme)
+    setTheme: (newTheme) => {
+      if (['light', 'dark', 'system'].includes(newTheme)) {
+        try {
+          localStorage.setItem('theme', newTheme)
+          setTheme(newTheme)
+        } catch (error) {
+          console.warn('Failed to save theme to localStorage:', error)
+          setTheme(newTheme) // Still set theme even if localStorage fails
+        }
+      }
     },
     toggleTheme: () => {
       const newTheme = theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'
-      localStorage.setItem('theme', newTheme)
-      setTheme(newTheme)
+      try {
+        localStorage.setItem('theme', newTheme)
+        setTheme(newTheme)
+      } catch (error) {
+        console.warn('Failed to save theme to localStorage:', error)
+        setTheme(newTheme) // Still set theme even if localStorage fails
+      }
     },
   }
 
