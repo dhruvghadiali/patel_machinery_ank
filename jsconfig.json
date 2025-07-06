@@ -11,6 +11,9 @@
             "@Components/*": [
                 "./src/components/common/*"
             ],
+            "@ScreenComponents/*": [
+                "./src/components/screen/*"
+            ],
             "@Assets/*": [
                 "./src/assets/*"
             ],
