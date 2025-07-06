@@ -11,6 +11,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
       "@ShadcnComponents": path.resolve(__dirname, "./src/components/ui"),
       "@Components": path.resolve(__dirname, "./src/components/common"),
+      "@Assets": path.resolve(__dirname, "./src/assets"),
     },
   },
 });

@@ -1,5 +1,6 @@
 import { ThemeSwitch } from "@ShadcnComponents/theme-switch";
 
+import logoImage from "@Assets/images/logo.png";
 import LargeScreenNavigationMenuComponent from "@Components/navigationMenu/largeScreenNavigationMenu";
 import MobileScreenNavigationMenuComponent from "@Components/navigationMenu/mobileScreenNavigationMenu";
 
@@ -70,7 +71,11 @@ function NavigationMenuComponent() {
           {/* Main nav */}
           <div className="flex items-center gap-6">
             <a href="#" className="text-primary hover:text-primary/90">
-              {/* <Logo /> */}
+              <img 
+                src={logoImage} 
+                alt="Company Logo" 
+                className="h-8 w-auto dark:brightness-0 dark:invert"
+              />
             </a>
             {/* Navigation menu */}
             <LargeScreenNavigationMenuComponent

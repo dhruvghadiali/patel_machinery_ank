@@ -11,6 +11,9 @@
             "@Components/*": [
                 "./src/components/common/*"
             ],
+            "@Assets/*": [
+                "./src/assets/*"
+            ],
         }
     },
     "include": ["./src/**/*"]
