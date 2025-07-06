@@ -8,6 +8,9 @@
             "@ShadcnComponents/*": [
                 "./src/components/ui/*"
             ],
+            "@Components/*": [
+                "./src/components/common/*"
+            ],
         }
     },
     "include": ["./src/**/*"]
