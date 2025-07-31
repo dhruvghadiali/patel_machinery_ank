@@ -1,5 +1,5 @@
 
-import homeBackground from "@/assets/images/home.jpg";
+import homeBackground from "@/assets/images/home.jpeg";
 
 function HomeScreenComponent() {
   return (
