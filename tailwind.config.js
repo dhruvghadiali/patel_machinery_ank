@@ -94,6 +94,12 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "slideRightToLeft": "slideRightToLeft 3s ease-in-out infinite",
+        "fadeInUp": "fadeInUp 0.8s ease-out",
+        "fadeInDown": "fadeInDown 0.6s ease-out",
+        "fadeInScale": "fadeInScale 0.7s ease-out",
+        "slideInLeft": "slideInLeft 0.8s ease-out",
+        "slideInRight": "slideInRight 0.8s ease-out",
       },
     },
   },
