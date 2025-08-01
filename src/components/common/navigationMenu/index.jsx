@@ -37,7 +37,7 @@ const navigationLinks = [
   },
   { href: "#", label: "Clients" },
   { href: "#", label: "Equipment" },
-  { href: "#", label: "Field work" },
+  { href: "#", label: "awards" },
   { href: "#", label: "Projects" },
   { href: "#", label: "About us" },
 ];
