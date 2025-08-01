@@ -3,6 +3,7 @@ import NavigationMenuComponent from "@Components/navigationMenu";
 import HomeScreenComponent from "@ScreenComponents/home";
 import ServicesIntroComponent from "@ScreenComponents/services";
 import ClientsIntroComponent from "@ScreenComponents/clients";
+import EquipmentIntroComponent from "@ScreenComponents/equipment";
 
 export default function HomePage() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
@@ -56,6 +57,15 @@ export default function HomePage() {
           : 'opacity-0 translate-y-12'
       }`}>
         <ClientsIntroComponent />
+      </div>
+
+      {/* Equipment section */}
+      <div className={`relative -z-10 transition-all duration-1000 delay-1000 ease-out  ${
+        isPageLoaded 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-12'
+      }`}>
+        <EquipmentIntroComponent />
       </div>
     </div>
   );
