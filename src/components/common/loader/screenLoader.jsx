@@ -16,7 +16,7 @@ const ScreenLoaderComponent = () => {
           <p className="font-semibold text-foreground lg:text-base xl:text-base text-xs">
             Loading
           </p>
-          <div className="flex space-x-1 mt-4">
+          <div className="flex space-x-1 mt-3">
             <div className="w-1 h-1 bg-primary rounded-full animate-bounce" />
             <div
               className="w-1 h-1 bg-primary rounded-full animate-bounce"
