@@ -8,8 +8,6 @@ import MobileScreenNavigationMenuComponent from "@Components/navigationMenu/mobi
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
   { href: "#", label: "Home" },
-  { href: "#", label: "About us" },
-  { href: "#", label: "Clients" },
   {
     label: "Services",
     submenu: true,
@@ -17,45 +15,31 @@ const navigationLinks = [
     items: [
       {
         href: "#",
-        label: "Components",
-        description: "Browse all components in the library.",
+        label: "Deep Foundation",
+        description: "Transfer building loads to deeper, stronger soil layers.",
       },
       {
         href: "#",
-        label: "Documentation",
-        description: "Learn how to use the library.",
+        label: "Earth Retention Solutions",
+        description: "Support excavations and prevent soil movement.",
       },
       {
         href: "#",
-        label: "Templates",
-        description: "Pre-built layouts for common use cases.",
+        label: "Pile Testing Solutions",
+        description: "Evaluate the load-bearing capacity of piles.",
+      },
+      {
+        href: "#",
+        label: "Rentals",
+        description: "Provide equipment and machinery for construction projects.",
       },
     ],
   },
+  { href: "#", label: "Clients" },
+  { href: "#", label: "Equipment" },
   { href: "#", label: "Field work" },
   { href: "#", label: "Projects" },
-  { href: "#", label: "Contact us" },
-  // {
-  //   label: "Pricing",
-  //   submenu: true,
-  //   type: "simple",
-  //   items: [
-  //     { href: "#", label: "Product A" },
-  //     { href: "#", label: "Product B" },
-  //     { href: "#", label: "Product C" },
-  //     { href: "#", label: "Product D" },
-  //   ],
-  // },
-  // {
-  //   label: "About",
-  //   submenu: true,
-  //   type: "icon",
-  //   items: [
-  //     { href: "#", label: "Getting Started", icon: "BookOpenIcon" },
-  //     { href: "#", label: "Tutorials", icon: "LifeBuoyIcon" },
-  //     { href: "#", label: "About Us", icon: "InfoIcon" },
-  //   ],
-  // },
+  { href: "#", label: "About us" },
 ];
 
 function NavigationMenuComponent() {
