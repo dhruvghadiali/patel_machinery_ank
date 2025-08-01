@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NavigationMenuComponent from "@Components/navigationMenu";
 import HomeScreenComponent from "@ScreenComponents/home";
+import ServicesIntroComponent from "@ScreenComponents/services";
 
 export default function HomePage() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
@@ -36,6 +37,15 @@ export default function HomePage() {
           : 'opacity-0 translate-y-12'
       }`}>
         <HomeScreenComponent />
+      </div>
+
+      {/* Services section */}
+      <div className={`relative -z-10 transition-all duration-1000 delay-600 ease-out  ${
+        isPageLoaded 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-12'
+      }`}>
+        <ServicesIntroComponent />
       </div>
     </div>
   );
