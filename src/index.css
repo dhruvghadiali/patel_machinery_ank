@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll padding to account for fixed header */
+html {
+  scroll-padding-top: 80px;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

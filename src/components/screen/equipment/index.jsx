@@ -193,6 +193,7 @@ function EquipmentIntroComponent() {
 
   return (
     <section 
+      id="equipment"
       ref={sectionRef}
       className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800"
     >

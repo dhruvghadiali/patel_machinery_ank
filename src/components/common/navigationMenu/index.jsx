@@ -7,44 +7,44 @@ import MobileScreenNavigationMenuComponent from "@Components/navigationMenu/mobi
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
-  { href: "#", label: "Home" },
+  { href: "#home", label: "Home" },
   {
     label: "Services",
     submenu: true,
     type: "description",
     items: [
       {
-        href: "#",
+        href: "#services",
         label: "Deep Foundation",
         description: "Transfer building loads to deeper, stronger soil layers.",
       },
       {
-        href: "#",
+        href: "#services",
         label: "Earth Retention Solutions",
         description: "Support excavations and prevent soil movement.",
       },
       {
-        href: "#",
+        href: "#services",
         label: "Pile Testing Solutions",
         description: "Evaluate the load-bearing capacity of piles.",
       },
       {
-        href: "#",
+        href: "#services",
         label: "Rentals",
         description: "Provide equipment and machinery for construction projects.",
       },
     ],
   },
-  { href: "#", label: "Clients" },
-  { href: "#", label: "Equipment" },
-  { href: "#", label: "awards" },
-  { href: "#", label: "Projects" },
-  { href: "#", label: "About us" },
+  { href: "#clients", label: "Clients" },
+  { href: "#equipment", label: "Equipment" },
+  { href: "#awards", label: "Awards" },
+  { href: "#projects", label: "Projects" },
+  { href: "#about-us", label: "About us" },
 ];
 
 function NavigationMenuComponent() {
   return (
-    <header className="relative bg-orange-500 px-4 md:px-6 z-50">
+    <header className="sticky top-0 bg-orange-500 px-4 md:px-6 z-50 shadow-lg">
       <div className="flex h-16 items-center justify-between gap-4">
         {/* Left side */}
         <div className="flex items-center gap-2">

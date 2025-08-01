@@ -122,6 +122,7 @@ function ClientsIntroComponent() {
 
   return (
     <section 
+      id="clients"
       ref={sectionRef}
       className="py-16 sm:py-20 md:py-24 lg:py-28 bg-white dark:bg-gray-900"
     >
