@@ -30,7 +30,7 @@ export default function HomePage() {
       </div>
       
       {/* Home content with fade up animation */}
-      <div className={`transition-all duration-1000 delay-400 ease-out ${
+      <div className={`relative -z-10 transition-all duration-1000 delay-400 ease-out  ${
         isPageLoaded 
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-12'

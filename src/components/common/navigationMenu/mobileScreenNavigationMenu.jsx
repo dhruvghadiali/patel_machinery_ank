@@ -15,7 +15,7 @@ function MobileScreenNavigationMenuComponent({ navigationLinks }) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button className="group size-8 lg:hidden" variant="ghost" size="icon">
+        <Button className="group size-8 lg:hidden text-white hover:text-orange-100 hover:bg-orange-600 transition-all duration-200" variant="ghost" size="icon">
           <svg
             className="pointer-events-none"
             width={16}
@@ -58,7 +58,7 @@ function MobileScreenNavigationMenuComponent({ navigationLinks }) {
                         <li key={itemIndex}>
                           <NavigationMenuLink
                             href={item.href}
-                            className="py-1.5"
+                            className="py-1.5 text-gray-700 hover:text-orange hover:bg-orange-50 px-2 rounded transition-all duration-200"
                           >
                             {item.label}
                           </NavigationMenuLink>
@@ -67,7 +67,7 @@ function MobileScreenNavigationMenuComponent({ navigationLinks }) {
                     </ul>
                   </>
                 ) : (
-                  <NavigationMenuLink href={link.href} className="py-1.5">
+                  <NavigationMenuLink href={link.href} className="py-1.5 text-gray-700 hover:text-orange hover:bg-orange-50 px-2 rounded transition-all duration-200">
                     {link.label}
                   </NavigationMenuLink>
                 )}
