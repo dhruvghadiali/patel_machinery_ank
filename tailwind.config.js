@@ -67,6 +67,23 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom orange color
+        orange: {
+          DEFAULT: "#f07d2d",
+          50: "#fef7ed",
+          100: "#fdedd4",
+          200: "#fad6a8",
+          300: "#f6b871",
+          400: "#f19338",
+          500: "#f07d2d",
+          600: "#e15d0f",
+          700: "#ba460f",
+          800: "#943814",
+          900: "#763014",
+        },
+        // Alternative naming options
+        brand: "#f07d2d",
+        construction: "#f07d2d",
       },
       borderRadius: {
         lg: "var(--radius)",

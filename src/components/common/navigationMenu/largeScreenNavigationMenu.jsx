@@ -1,97 +1,72 @@
 import { cn } from "@/lib/utils";
-import { BookOpenIcon, InfoIcon, LifeBuoyIcon } from "lucide-react";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+import { ChevronDownIcon } from "lucide-react";
+import { useState } from "react";
 
 function LargeScreenNavigationMenuComponent({ navigationLinks }) {
-  return (
-    <NavigationMenu viewport={false} className="max-lg:hidden">
-      <NavigationMenuList className="gap-2">
-        {navigationLinks.map((link, index) => (
-          <NavigationMenuItem key={index}>
-            {link.submenu ? (
-              <>
-                <NavigationMenuTrigger className="text-muted-foreground hover:text-primary bg-transparent px-2 py-1.5 font-medium *:[svg]:-me-0.5 *:[svg]:size-3.5">
-                  {link.label}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="data-[motion=from-end]:slide-in-from-right-16! data-[motion=from-start]:slide-in-from-left-16! data-[motion=to-end]:slide-out-to-right-16! data-[motion=to-start]:slide-out-to-left-16! z-50 p-1">
-                  <ul
-                    className={cn(
-                      link.type === "description" ? "min-w-64" : "min-w-48"
-                    )}
-                  >
-                    {link.items.map((item, itemIndex) => (
-                      <li key={itemIndex}>
-                        <NavigationMenuLink href={item.href} className="py-1.5">
-                          {/* Display icon if present */}
-                          {link.type === "icon" && "icon" in item && (
-                            <div className="flex items-center gap-2">
-                              {item.icon === "BookOpenIcon" && (
-                                <BookOpenIcon
-                                  size={16}
-                                  className="text-foreground opacity-60"
-                                  aria-hidden="true"
-                                />
-                              )}
-                              {item.icon === "LifeBuoyIcon" && (
-                                <LifeBuoyIcon
-                                  size={16}
-                                  className="text-foreground opacity-60"
-                                  aria-hidden="true"
-                                />
-                              )}
-                              {item.icon === "InfoIcon" && (
-                                <InfoIcon
-                                  size={16}
-                                  className="text-foreground opacity-60"
-                                  aria-hidden="true"
-                                />
-                              )}
-                              <span>{item.label}</span>
-                            </div>
-                          )}
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-                          {/* Display label with description if present */}
-                          {link.type === "description" &&
-                          "description" in item ? (
-                            <div className="space-y-1">
-                              <div className="font-medium">{item.label}</div>
-                              <p className="text-muted-foreground line-clamp-2 text-xs">
-                                {item.description}
-                              </p>
-                            </div>
-                          ) : (
-                            // Display simple label if not icon or description type
-                            !link.type ||
-                            (link.type !== "icon" &&
-                              link.type !== "description" && (
-                                <span>{item.label}</span>
-                              ))
+  const handleMouseEnter = (index) => {
+    setOpenDropdown(index);
+  };
+
+  const handleMouseLeave = () => {
+    setOpenDropdown(null);
+  };
+
+  return (
+    <nav className="max-lg:hidden">
+      <ul className="flex items-center gap-2">
+        {navigationLinks.map((link, index) => (
+          <li key={index} className="relative">
+            {link.submenu ? (
+              <div
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button className="flex items-center text-white hover:text-orange-100 hover:bg-orange-600 bg-transparent px-3 py-2 font-medium transition-all duration-200 rounded-md">
+                  {link.label}
+                  <ChevronDownIcon className="ml-1 h-4 w-4 transition-transform duration-200" />
+                </button>
+                
+                {/* Dropdown Menu */}
+                <div
+                  className={`absolute top-full left-0 z-[9999] min-w-[280px] bg-white shadow-xl border border-gray-200 rounded-md overflow-hidden mt-2 transition-all duration-200 ${
+                    openDropdown === index
+                      ? "opacity-100 visible transform translate-y-0"
+                      : "opacity-0 invisible transform -translate-y-2"
+                  }`}
+                >
+                  <div className="p-3 space-y-2">
+                    {link.items && link.items.map((item, itemIndex) => (
+                      <a
+                        key={itemIndex}
+                        href={item.href}
+                        className="block px-4 py-3 text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all duration-200"
+                      >
+                        <div className="flex flex-col">
+                          <span className="font-semibold text-base">{item.label}</span>
+                          {item.description && (
+                            <span className="text-sm text-gray-500 mt-1 leading-relaxed">{item.description}</span>
                           )}
-                        </NavigationMenuLink>
-                      </li>
+                        </div>
+                      </a>
                     ))}
-                  </ul>
-                </NavigationMenuContent>
-              </>
+                  </div>
+                </div>
+              </div>
             ) : (
-              <NavigationMenuLink
+              <a
                 href={link.href}
-                className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                className="text-white hover:text-orange-100 hover:bg-orange-600 px-3 py-2 font-medium transition-all duration-200 rounded-md"
               >
                 {link.label}
-              </NavigationMenuLink>
+              </a>
             )}
-          </NavigationMenuItem>
+          </li>
         ))}
-      </NavigationMenuList>
-    </NavigationMenu>
+      </ul>
+    </nav>
   );
 }
 

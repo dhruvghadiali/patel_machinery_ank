@@ -14,7 +14,7 @@ export function ThemeSwitch() {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="h-9 w-9"
+      className="h-9 w-9 text-white hover:text-orange-100 hover:bg-orange-600"
       title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
     >
       {theme === 'light' ? (
