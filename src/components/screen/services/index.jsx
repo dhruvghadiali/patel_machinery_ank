@@ -68,6 +68,7 @@ function ServicesIntroComponent() {
 
   return (
     <section 
+      id="services"
       ref={sectionRef}
       className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
     >

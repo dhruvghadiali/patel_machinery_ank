@@ -3,6 +3,7 @@ import homeBackground from "@/assets/images/home.jpeg";
 function HomeScreenComponent() {
   return (
     <div
+    id="home"
       className="w-full relative flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat md:bg-fixed bg-scroll"
       style={{
         backgroundImage: `url(${homeBackground})`,
