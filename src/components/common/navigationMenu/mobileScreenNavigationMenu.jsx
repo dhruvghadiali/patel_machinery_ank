@@ -43,7 +43,7 @@ function MobileScreenNavigationMenuComponent({ navigationLinks }) {
           </svg>
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="start" className="w-64 p-1 md:hidden">
+      <PopoverContent align="start" className="w-64 p-1 mt-3 lg:hidden">
         <NavigationMenu className="max-w-none *:w-full">
           <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
             {navigationLinks.map((link, index) => (
