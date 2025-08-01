@@ -57,7 +57,7 @@ function NavigationMenuComponent() {
           <div className="relative flex items-center gap-6">
             <Avatar className="bg-white h-14 w-14">
               <AvatarImage src={logoImage} />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>PC</AvatarFallback>
             </Avatar>
             {/* Navigation menu */}
             <LargeScreenNavigationMenuComponent
