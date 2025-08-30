@@ -1,45 +1,45 @@
 import { useEffect, useState, useRef } from "react";
-import ServiceSectionCardComponent from "@ScreenComponents/services/serviceSectionCardComponent";
-import ServiceSectionHeadingComponent from "@ScreenComponents/services/servicesSectionHeadingComponent";
+import ServicesSectionCardComponent from "@ScreenComponents/services/servicesSectionCardComponent";
+import ServicesSectionHeadingComponent from "@ScreenComponents/services/servicesSectionHeadingComponent";
 
-const servicesData = [
-  {
-    label: "Pile Foundation",
-    description: "Transfer building loads to deeper, stronger soil layers.",
-    fullDescription:
-      "Our pile foundation solutions provide reliable support for structures by transferring loads to stable soil or rock layers deep beneath the surface.",
-    features: [
-      "Bored Cast-In-Situ Pile",
-      "Auger Pile",
-      "Micropiles",
-      "Foundation Design",
-    ],
-  },
-  {
-    label: "Pile Testing Solutions",
-    description: "Evaluate the load-bearing capacity of piles.",
-    fullDescription:
-      "Comprehensive pile testing services to verify structural integrity and load-bearing capacity using state-of-the-art testing equipment.",
-    features: [
-      "Static Load Testing",
-      "Dynamic Testing",
-      "Integrity Testing",
-      "Quality Assurance",
-    ],
-  },
-  {
-    label: "Rentals",
-    description: "Provide equipment and machinery for construction projects.",
-    fullDescription:
-      "Complete equipment rental solutions for construction projects with well-maintained machinery and expert technical support.",
-    features: ["Hydraulic Machinery", "Axiax Fiori Concrete Mixer"],
-  },
-];
-
-function ServicesIntroComponent() {
+const ServicesIntroComponent = () => {
   const [visibleCards, setVisibleCards] = useState([]);
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef(null);
+
+  const servicesData = [
+    {
+      label: "Pile Foundation",
+      description: "Transfer building loads to deeper, stronger soil layers.",
+      fullDescription:
+        "Our pile foundation solutions provide reliable support for structures by transferring loads to stable soil or rock layers deep beneath the surface.",
+      features: [
+        "Bored Cast-In-Situ Pile",
+        "Auger Pile",
+        "Micropiles",
+        "Foundation Design",
+      ],
+    },
+    {
+      label: "Pile Testing Solutions",
+      description: "Evaluate the load-bearing capacity of piles.",
+      fullDescription:
+        "Comprehensive pile testing services to verify structural integrity and load-bearing capacity using state-of-the-art testing equipment.",
+      features: [
+        "Static Load Testing",
+        "Dynamic Testing",
+        "Integrity Testing",
+        "Quality Assurance",
+      ],
+    },
+    {
+      label: "Rentals",
+      description: "Provide equipment and machinery for construction projects.",
+      fullDescription:
+        "Complete equipment rental solutions for construction projects with well-maintained machinery and expert technical support.",
+      features: ["Hydraulic Machinery", "Axiax Fiori Concrete Mixer"],
+    },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -81,12 +81,12 @@ function ServicesIntroComponent() {
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
         {/* Header Section */}
-        <ServiceSectionHeadingComponent hasAnimated={hasAnimated} />
+        <ServicesSectionHeadingComponent hasAnimated={hasAnimated} />
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16">
           {servicesData.map((service, index) => (
-            <ServiceSectionCardComponent
+            <ServicesSectionCardComponent
               index={index}
               service={service}
               visibleCards={visibleCards}
@@ -96,6 +96,6 @@ function ServicesIntroComponent() {
       </div>
     </section>
   );
-}
+};
 
 export default ServicesIntroComponent;

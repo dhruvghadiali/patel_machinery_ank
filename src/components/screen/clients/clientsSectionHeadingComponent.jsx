@@ -1,4 +1,4 @@
-const ServicesSectionHeadingComponent = ({ hasAnimated }) => {
+const ClientsSectionHeadingComponent = ({ hasAnimated }) => {
   return (
     <div className="text-center mb-16 sm:mb-20 md:mb-24">
       <div
@@ -7,15 +7,16 @@ const ServicesSectionHeadingComponent = ({ hasAnimated }) => {
         }`}
       >
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
-          Our <span className="text-orange-500">Services</span>
+          Our <span className="text-orange-500">Clients</span>
         </h2>
         <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-          We provide comprehensive construction solutions with expertise in pile
-          foundation engineering, and specialized pile testing services.
+          Trusted by industry leaders across commercial, industrial, and public
+          sectors. Building lasting partnerships through exceptional service and
+          results.
         </p>
       </div>
     </div>
   );
 };
 
-export default ServicesSectionHeadingComponent;
+export default ClientsSectionHeadingComponent;

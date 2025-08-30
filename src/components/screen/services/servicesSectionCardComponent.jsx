@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-const ServiceSectionCardComponent = ({ service, visibleCards, index }) => {
+const ServicesSectionCardComponent = ({ service, visibleCards, index }) => {
   const cardsRef = useRef([]);
 
   return (
@@ -56,4 +56,4 @@ const ServiceSectionCardComponent = ({ service, visibleCards, index }) => {
   );
 };
 
-export default ServiceSectionCardComponent;
+export default ServicesSectionCardComponent;
