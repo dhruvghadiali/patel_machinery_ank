@@ -3,7 +3,7 @@ import { Users, Target, Award, Heart, Lightbulb, Shield, Globe, Handshake } from
 
 const teamMembers = [
   {
-    name: "Rajesh Patel",
+    name: "Pareshkumar Pipariya",
     position: "Founder & CEO",
     experience: "25+ Years",
     specialization: "Foundation Engineering",
@@ -11,7 +11,7 @@ const teamMembers = [
     description: "Visionary leader with over two decades of experience in deep foundation engineering and construction management."
   },
   {
-    name: "Priya Sharma",
+    name: "Subrato Setua",
     position: "Chief Engineer",
     experience: "18+ Years",
     specialization: "Structural Design",
@@ -19,7 +19,7 @@ const teamMembers = [
     description: "Expert in structural analysis and innovative foundation solutions with a focus on sustainable construction practices."
   },
   {
-    name: "Amit Kumar",
+    name: "Rafik Mansuri",
     position: "Operations Director",
     experience: "20+ Years",
     specialization: "Project Management",
@@ -27,7 +27,7 @@ const teamMembers = [
     description: "Operational excellence leader ensuring seamless project execution and maintaining our industry-leading safety standards."
   },
   {
-    name: "Sarah Johnson",
+    name: "Akhtar Raza",
     position: "Safety Manager",
     experience: "15+ Years",
     specialization: "Workplace Safety",
@@ -76,13 +76,12 @@ const companyValues = [
 ];
 
 const milestones = [
-  { year: "2009", event: "Company Founded", description: "Patel Machinery established with a vision to revolutionize foundation engineering" },
-  { year: "2012", event: "First Major Project", description: "Completed Metro Bridge Foundation project, establishing our reputation" },
+  { year: "2011", event: "Company Founded", description: "Patel Machinery established with a vision to revolutionize foundation engineering" },
+  { year: "2014", event: "First Major Project", description: "Completed Metro Bridge Foundation project, establishing our reputation" },
   { year: "2015", event: "Safety Excellence", description: "Achieved our first 1000 days without workplace incidents" },
   { year: "2018", event: "Technology Innovation", description: "Introduced AI-driven pile testing systems" },
   { year: "2020", event: "Expansion", description: "Expanded operations to serve three major metropolitan areas" },
-  { year: "2022", event: "Environmental Award", description: "Received recognition for sustainable construction practices" },
-  { year: "2024", event: "Industry Leadership", description: "Recognized as the leading foundation engineering company in the region" }
+  { year: "2025", event: "Industry Leadership", description: "Recognized as the leading foundation engineering company in the region" }
 ];
 
 const companyStats = [
@@ -192,7 +191,7 @@ function AboutUsIntroComponent() {
               About <span className="text-orange-500">Us</span>
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
-              For over 15 years, Patel Machinery has been at the forefront of foundation engineering, 
+              For over 15 years, Patel Construction has been at the forefront of foundation engineering, 
               delivering innovative solutions that build the infrastructure of tomorrow.
             </p>
             <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-2xl p-8 sm:p-12 border-l-4 border-orange-500">
@@ -200,7 +199,7 @@ function AboutUsIntroComponent() {
                 "Building foundations that last generations, with safety and innovation as our cornerstone principles."
               </p>
               <p className="text-lg text-orange-600 dark:text-orange-400 mt-4 font-medium">
-                - Rajesh Patel, Founder & CEO
+                - Pareshkumar Pipariya, Founder & CEO
               </p>
             </div>
           </div>

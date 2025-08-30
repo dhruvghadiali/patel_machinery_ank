@@ -15,13 +15,8 @@ const navigationLinks = [
     items: [
       {
         href: "#services",
-        label: "Deep Foundation",
+        label: "Pile Foundation",
         description: "Transfer building loads to deeper, stronger soil layers.",
-      },
-      {
-        href: "#services",
-        label: "Earth Retention Solutions",
-        description: "Support excavations and prevent soil movement.",
       },
       {
         href: "#services",
