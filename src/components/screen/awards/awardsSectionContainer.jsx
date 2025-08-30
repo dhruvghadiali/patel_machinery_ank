@@ -13,7 +13,7 @@ const AwardsSectionContainer = ({ awardsData, visibleCards }) => {
             }`}
             style={{ transitionDelay: `${index * 150}ms` }}
           >
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:border-orange-300 dark:group-hover:border-orange-600 group-hover:-translate-y-2 h-full">
+            <div className="bg-white dark:bg-gray-800 hover:cursor-pointer rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:border-orange-300 dark:group-hover:border-orange-600 group-hover:-translate-y-2 h-full">
               {/* Award Header with Gradient */}
               <div
                 className={`bg-gradient-to-r ${award.color} p-6 sm:p-8 text-white relative overflow-hidden`}

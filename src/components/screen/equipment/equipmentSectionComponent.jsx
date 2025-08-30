@@ -13,7 +13,7 @@ const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
           }`}
           style={{ transitionDelay: `${index * 150}ms` }}
         >
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:border-orange-300 dark:group-hover:border-orange-600 group-hover:-translate-y-2">
+          <div className="bg-white dark:bg-slate-800 hover:cursor-pointer rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:border-orange-300 dark:group-hover:border-orange-600 group-hover:-translate-y-2">
             {/* Equipment Header */}
             <div className="p-6 sm:p-8 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-start justify-between mb-4">

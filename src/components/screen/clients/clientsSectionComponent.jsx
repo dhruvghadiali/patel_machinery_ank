@@ -11,7 +11,7 @@ const ClientsSectionComponent = ({clientsData, visibleCards}) => {
           }`}
           style={{ transitionDelay: `${index * 150}ms` }}
         >
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-6 sm:p-8 h-full border border-gray-200 dark:border-gray-700 group-hover:border-orange-300 dark:group-hover:border-orange-600 group-hover:-translate-y-2">
+          <div className="bg-gray-50 dark:bg-gray-800 hover:cursor-pointer rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-6 sm:p-8 h-full border border-gray-200 dark:border-gray-700 group-hover:border-orange-300 dark:group-hover:border-orange-600 group-hover:-translate-y-2">
             {/* Client Header */}
             <div className="flex items-center md:h-20 mb-6">
               <div className="text-4xl sm:text-5xl mr-4 group-hover:scale-110 transition-transform duration-300">
