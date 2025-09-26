@@ -276,50 +276,6 @@ function AboutUsIntroComponent() {
           </div>
         </div>
 
-        {/* Team Section */}
-        <div className="mb-16 sm:mb-20 md:mb-24">
-          <div className={`text-center mb-12 transition-all duration-1000 ease-out ${
-            hasAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Meet Our <span className="text-orange-500">Leadership Team</span>
-            </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Experienced professionals leading the way in foundation engineering and construction excellence.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                className={`transition-all duration-700 ease-out transform ${
-                  visibleElements.team.includes(index)
-                    ? 'opacity-100 translate-y-0 scale-100'
-                    : 'opacity-0 translate-y-12 scale-95'
-                }`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl text-center">
-                  <div className="text-6xl mb-4">{member.image}</div>
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                    {member.name}
-                  </h4>
-                  <p className="text-orange-600 dark:text-orange-400 font-semibold mb-2">
-                    {member.position}
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                    {member.experience} • {member.specialization}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                    {member.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Company Timeline */}
         <div className="mb-16 sm:mb-20 md:mb-24">
           <div className={`text-center mb-12 transition-all duration-1000 ease-out ${
