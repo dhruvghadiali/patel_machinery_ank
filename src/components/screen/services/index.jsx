@@ -79,12 +79,12 @@ const ServicesIntroComponent = () => {
       ref={sectionRef}
       className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+      <div className="px-0 sm:px-16 md:px-16 lg:px-10 xl:px-60">
         {/* Header Section */}
         <ServicesSectionHeadingComponent hasAnimated={hasAnimated} />
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 sm:gap-10 md:gap-12 lg:gap-16">
           {servicesData.map((service, index) => (
             <ServicesSectionCardComponent
               index={index}
