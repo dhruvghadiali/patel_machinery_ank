@@ -103,13 +103,15 @@ const ClientsIntroComponent = () => {
         {/* Header Section */}
         <ClientsSectionHeadingComponent hasAnimated={hasAnimated} />
 
+        {/* Clients company logos */}
+        <ClientSectionCompanyLogosComponent />
+
         {/* Stats Section */}
         <ClientsSectionStatsComponent
           visibleStats={visibleStats}
           stats={stats}
         />
-        {/* Clients company logos */}
-        <ClientSectionCompanyLogosComponent />
+        
 
         {/* Clients Grid */}
         <ClientsSectionComponent

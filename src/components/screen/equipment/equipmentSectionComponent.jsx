@@ -2,7 +2,7 @@ import { Wrench, Shield } from "lucide-react";
 
 const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
       {equipmentData.map((equipment, index) => (
         <div
           key={index}
@@ -75,6 +75,7 @@ const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
                   <Shield className="w-5 h-5 mr-2 text-orange-500" />
                   Applications
                 </h4>
+                <div className="h-28">
                 <div className="flex flex-wrap gap-2">
                   {equipment.applications.map((app, appIndex) => (
                     <span
@@ -84,6 +85,7 @@ const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
                       {app}
                     </span>
                   ))}
+                </div>
                 </div>
               </div>
             </div>
