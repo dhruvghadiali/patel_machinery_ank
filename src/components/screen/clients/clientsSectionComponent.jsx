@@ -1,6 +1,6 @@
 const ClientsSectionComponent = ({clientsData, visibleCards}) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
       {clientsData.map((client, index) => (
         <div
           key={index}
