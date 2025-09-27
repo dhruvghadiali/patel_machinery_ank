@@ -4,6 +4,7 @@ import { Star, Building, Settings } from "lucide-react";
 import ClientsSectionComponent from "@ScreenComponents/clients/clientsSectionComponent";
 import ClientsSectionStatsComponent from "@ScreenComponents/clients/clientsSectionStatsComponent";
 import ClientsSectionHeadingComponent from "@ScreenComponents/clients/clientsSectionHeadingComponent";
+import ClientSectionCompanyLogosComponent from "@ScreenComponents/clients/clientSectionCompanyLogosComponent";
 
 const ClientsIntroComponent = () => {
   const [visibleCards, setVisibleCards] = useState([]);
@@ -107,6 +108,8 @@ const ClientsIntroComponent = () => {
           visibleStats={visibleStats}
           stats={stats}
         />
+        {/* Clients company logos */}
+        <ClientSectionCompanyLogosComponent />
 
         {/* Clients Grid */}
         <ClientsSectionComponent
