@@ -5,8 +5,8 @@ import ProjectsSectionComponent from "@ScreenComponents/projects/projectsSection
 import ProjectsSectionStatsComponent from "@ScreenComponents/projects/projectsSectionStatsComponent";
 import ProjectsSectionHeadingComponent from "@ScreenComponents/projects/projectsSectionHeadingComponent";
 
-import gaclLogo from "@Assets/images/gacl-logo.png";
-import adaniLogo from "@Assets/images/adani-logo.png";
+import gaclLogo from "@Assets/images/GACL.jpg";
+import adaniLogo from "@Assets/images/ADANI.jpg";
 
 function ProjectsIntroComponent() {
   const [visibleCards, setVisibleCards] = useState([]);
