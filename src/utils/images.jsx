@@ -1,7 +1,6 @@
 import adaniLogo from "@/assets/images/ADANI.jpg";
 import afclLogo from "@/assets/images/AFCL.jpg";
 import amararajaLogo from "@/assets/images/AMARARAJA.jpg";
-import brLogo from "@/assets/images/br.jpg";
 import bdBuildcomLogo from "@/assets/images/BD-BUILDCON.jpg";
 import desaiLogo from "@/assets/images/DESAI.jpg";
 import dfpclLogo from "@/assets/images/DFPCL.jpg";
@@ -22,7 +21,6 @@ export {
   adaniLogo,
   afclLogo,
   amararajaLogo,
-  brLogo,
   bdBuildcomLogo,
   desaiLogo,
   dfpclLogo,
