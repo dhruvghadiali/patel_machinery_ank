@@ -29,7 +29,6 @@ const companyLogos = [
   { name: "Adani Group", logo: adaniLogo, color: "from-blue-600 to-blue-700" },
   { name: "Atvantic", logo: afclLogo, color: "from-gray-600 to-gray-700" },
   { name: "Amara Raja", logo: amararajaLogo, color: "from-green-600 to-green-700" },
-  { name: "AM/NS India", logo: amsLogo, color: "from-orange-600 to-orange-700" },
   { name: "B & R", logo: brLogo, color: "from-purple-600 to-purple-700" },
   { name: "BD Buildcom", logo: bdBuildcomLogo, color: "from-yellow-600 to-yellow-700" },
   { name: "Desai", logo: desaiLogo, color: "from-red-600 to-red-700" },
