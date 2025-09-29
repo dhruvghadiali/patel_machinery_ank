@@ -1,0 +1,77 @@
+const projects = [
+    {
+        companyName:"Bridge & roof Co. (India) Ltd",
+        companyLogo:"",
+        category: "Industrial Construction",
+        projectDetails: "Piling & Pile testing services",
+        year: "2019",
+        status: "Completed",
+        location: "Dahej Gujarat",
+
+    },
+    {
+        companyName:"Gujarat Alkalies and Chemicals Limited",
+        companyLogo:"",
+        category: "Industrial Construction",
+        projectDetails: "PPA Project (Phase 1)",
+        year: "2019",
+        status: "Completed",
+        location: "Dahej Gujarat",
+    },
+    {
+        companyName:"Gujarat Alkalies and Chemicals Limited",
+        companyLogo:"",
+        category: "Industrial Construction",
+        projectDetails: "PPA Project (Phase 2)",
+        year: "2020",
+        status: "Completed",
+        location: "Dahej Gujarat",
+    },
+    {
+        companyName:"KJL Petroplast",
+        companyLogo:"",
+        category: "Industrial Construction",
+        projectDetails: "Piling & Pile testing services",
+        year: "2022",
+        status: "Completed",
+        location: "Dahej Gujarat",
+    },
+    {
+        companyName:"Atvantic Finechem Pvt. Ltd.",
+        companyLogo:"",
+        category: "Industrial Construction",
+        projectDetails: "Piling & Pile testing services",
+        year: "2023",
+        status: "Completed",
+        location: "Dahej Gujarat",
+    },
+    {
+        companyName:"Vijay M. Mistry Construction Pvt. Ltd.",
+        companyLogo:"",
+        category: "Industrial Construction",
+        projectDetails: "Piling & Pile testing services",
+        year: "2025",
+        status: "Completed",
+        location: "Dahej Gujarat",
+    },
+    {
+        companyName:"Ambuja Concrte North PL Adani Corporate House",
+        companyLogo:"",
+        category: "Industrial Construction",
+        projectDetails: "Piling & Pile testing services",
+        year: "2025",
+        status: "Completed",
+        location: "Dahej Gujarat",
+    },
+    {
+        companyName:"Deepak Fertilizer & Petrochemicals ",
+        companyLogo:"",
+        category: "Industrial Construction",
+        projectDetails: "Piling & Pile testing services",
+        year: "2025",
+        status: "Completed",
+        location: "Dahej Gujarat",
+    }
+];
+
+export { projects };
