@@ -16,6 +16,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import {projects} from "@/utils/projects";
+
 import ProjectsSectionComponent from "@ScreenComponents/projects/projectsSectionComponent";
 import ProjectsSectionStatsComponent from "@ScreenComponents/projects/projectsSectionStatsComponent";
 import ProjectsSectionHeadingComponent from "@ScreenComponents/projects/projectsSectionHeadingComponent";
@@ -31,65 +33,7 @@ function ProjectsIntroComponent() {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
   const sectionRef = useRef(null);
 
-  // Extended project data for table display
-  const allProjectsData = [
-    {
-      company: "Gujarat Alkalies and Chemicals Limited",
-      location: "Dahej, Bharuch, Gujarat",
-      work: "Dia Pile Foundation",
-      year: "2023",
-      status: "Completed"
-    },
-    {
-      company: "Adani Cement Industries Limited", 
-      location: "Dahej, Bharuch, Gujarat",
-      work: "Dia Pile Foundation",
-      year: "2023",
-      status: "Completed"
-    },
-    {
-      company: "Thermax Limited",
-      location: "Pune, Maharashtra",
-      work: "Load Testing & Pile Installation",
-      year: "2022",
-      status: "Completed"
-    },
-    {
-      company: "Torrent Power Limited",
-      location: "Ahmedabad, Gujarat",
-      work: "Foundation Testing",
-      year: "2022",
-      status: "Completed"
-    },
-    {
-      company: "AFCL Industries",
-      location: "Mumbai, Maharashtra",
-      work: "Deep Foundation Work",
-      year: "2023",
-      status: "In Progress"
-    },
-    {
-      company: "LT Geo Engineering",
-      location: "Bangalore, Karnataka",
-      work: "Pile Testing & Analysis",
-      year: "2024",
-      status: "In Progress"
-    },
-    {
-      company: "PSP Projects",
-      location: "Ahmedabad, Gujarat",
-      work: "Structural Foundation",
-      year: "2021",
-      status: "Completed"
-    },
-    {
-      company: "Rayzon Solar",
-      location: "Mysore, Karnataka",
-      work: "Solar Plant Foundation",
-      year: "2023",
-      status: "Completed"
-    }
-  ];
+  ;
 
   // Sorting function
   const handleSort = (key) => {
@@ -101,7 +45,7 @@ function ProjectsIntroComponent() {
   };
 
   // Sort the data based on current sort configuration
-  const sortedProjectsData = [...allProjectsData].sort((a, b) => {
+  const sortedProjectsData = [...projects].sort((a, b) => {
     if (!sortConfig.key) return 0;
     
     const aValue = a[sortConfig.key];
@@ -343,13 +287,13 @@ function ProjectsIntroComponent() {
                     {sortedProjectsData.map((project, index) => (
                       <TableRow key={index} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <TableCell className="font-medium text-gray-900 dark:text-gray-100">
-                          {project.company}
+                          {project.companyName}
                         </TableCell>
                         <TableCell className="text-gray-700 dark:text-gray-300">
                           {project.location}
                         </TableCell>
                         <TableCell className="text-gray-700 dark:text-gray-300">
-                          {project.work}
+                          {project.projectDetails}
                         </TableCell>
                         <TableCell className="text-gray-700 dark:text-gray-300">
                           {project.year}
