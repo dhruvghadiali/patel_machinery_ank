@@ -15,7 +15,7 @@ import {
 const featuredCompanyLogos = [
   { name: "AFCL", logo: afclLogo, color: "from-gray-600 to-gray-700" },
   { name: "Adani Group", logo: adaniLogo, color: "from-blue-600 to-blue-700" },
-  { name: "LT Geo", logo: ltGeoLogo, color: "from-orange-500 to-orange-600" },
+  { name: "L&T Geo", logo: ltGeoLogo, color: "from-orange-500 to-orange-600" },
   { name: "Desai", logo: desaiLogo, color: "from-red-600 to-red-700" },
   { name: "GACL", logo: gaclLogo, color: "from-teal-600 to-teal-700" },
   { name: "PSP", logo: pspLogo, color: "from-blue-500 to-blue-600" },
@@ -39,14 +39,18 @@ const ClientSectionCompanyLogosComponent = () => {
               className="flex-shrink-0 group cursor-pointer"
             >
               <div className="flex flex-col items-center space-y-2 sm:space-y-3">
-                {/* Logo container */}
+                {/* Logo container - Mobile Optimized */}
                 <div
-                  className={`w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-48 lg:h-28 rounded-xl bg-white/70 shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300 overflow-hidden`}
+                  className={`w-20 h-16 sm:w-24 sm:h-20 md:w-28 md:h-24 lg:w-52 lg:h-32 rounded-xl bg-white/70 shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300 overflow-hidden flex items-center justify-center p-2 sm:p-3`}
                 >
                   <img
                     src={company.logo}
                     alt={`${company.name} logo`}
-                    className="w-full h-full object-cover rounded-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                    className="max-w-full max-h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      minWidth: '35px',
+                      minHeight: '25px'
+                    }}
                   />
                 </div>
 
