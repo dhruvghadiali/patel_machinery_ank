@@ -1,6 +1,6 @@
 const ClientsSectionStatsComponent = ({ visibleStats, stats }) => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-12 mb-16 sm:mb-20 md:mb-24">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 md:gap-12 mb-16 sm:mb-20 md:mb-24">
       {stats.map((stat, index) => {
         const IconComponent = stat.icon;
         return (
