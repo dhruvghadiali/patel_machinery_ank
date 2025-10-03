@@ -8,13 +8,12 @@ const servicesData = [
       "Bored Cast-In-Situ Pile",
       "Auger Pile",
       "Micropiles",
-      "Foundation Design",
     ],
     detailedDescription:
       "Our pile foundation services provide deep foundation solutions for structures requiring support beyond shallow foundations. We specialize in transferring structural loads to competent soil or rock layers at significant depths, ensuring long-term stability and safety for your construction projects.",
     process: [
       "Site investigation and soil analysis",
-      "Foundation design and engineering calculations",
+      "Engineering calculations",
       "Equipment mobilization and setup",
       "Pile installation using advanced machinery",
       "Quality control testing during installation",
@@ -92,7 +91,7 @@ const servicesData = [
     description: "Provide equipment and machinery for construction projects.",
     fullDescription:
       "Complete equipment rental solutions for construction projects with well-maintained machinery and expert technical support.",
-    features: ["Hydraulic Machinery", "Axiax Fiori Concrete Mixer"],
+    features: ["Hydraulic Machinery", "Ajax Fiori Concrete Mixer"],
     detailedDescription:
       "Our equipment rental division provides comprehensive construction machinery and specialized equipment for various construction projects. With a modern fleet of well-maintained equipment and expert technical support, we ensure your projects run smoothly and efficiently.",
     process: [
