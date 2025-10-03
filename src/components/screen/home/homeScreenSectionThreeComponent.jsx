@@ -2,7 +2,7 @@ const HomeScreenSectionThreeComponent = () => {
   return (
     <p
       className="
-            text-xs sm:text-xs md:text-base lg:text-lg xl:text-xl
+            text-xs sm:text-base md:text-base lg:text-lg xl:text-xl
             font-medium
             text-center 
             mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16
