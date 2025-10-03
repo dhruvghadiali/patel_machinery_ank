@@ -17,6 +17,11 @@ import spcplLogo from "@/assets/images/SPCPL.jpg";
 import thermaxLogo from "@/assets/images/THERMAX.jpg";
 import torrentLogo from "@/assets/images/TORRENT.jpg";
 
+// Equipment Images
+import equipmentIcon1 from "@/assets/images/icon1.png";
+import equipmentIcon2 from "@/assets/images/icon2.png";
+import equipmentIcon3 from "@/assets/images/icon3.png";
+
 export {
   adaniLogo,
   afclLogo,
@@ -36,4 +41,8 @@ export {
   spcplLogo,
   thermaxLogo,
   torrentLogo,
+  // Equipment Images
+  equipmentIcon1,
+  equipmentIcon2,
+  equipmentIcon3,
 };
