@@ -76,7 +76,7 @@ const companyValues = [
 ];
 
 const milestones = [
-  { year: "2011", event: "Company Founded", description: "Patel Machinery established with a vision to revolutionize foundation engineering" },
+  { year: "2011", event: "Company Founded", description: "Patel Construction established with a vision to revolutionize foundation engineering" },
   { year: "2014", event: "First Major Project", description: "Completed Metro Bridge Foundation project, establishing our reputation" },
   { year: "2015", event: "Safety Excellence", description: "Achieved our first 1000 days without workplace incidents" },
   { year: "2018", event: "Technology Innovation", description: "Introduced AI-driven pile testing systems" },
@@ -333,7 +333,7 @@ function AboutUsIntroComponent() {
               Partner with <span className="text-amber-200">Industry Leaders</span>
             </h3>
             <p className="text-lg sm:text-xl mb-6 sm:mb-8 opacity-90 max-w-3xl mx-auto">
-              Join the growing number of clients who trust Patel Machinery for their most critical 
+              Join the growing number of clients who trust Patel Construction for their most critical 
               foundation engineering projects. Experience the difference expertise makes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
