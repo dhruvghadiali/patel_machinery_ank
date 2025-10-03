@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from "react";
-import { Star, Building, Settings } from "lucide-react";
+import { Star, Building, Settings, Users } from "lucide-react";
 
 import ClientsSectionComponent from "@ScreenComponents/clients/clientsSectionComponent";
 import ClientsSectionStatsComponent from "@ScreenComponents/clients/clientsSectionStatsComponent";
 import ClientsSectionHeadingComponent from "@ScreenComponents/clients/clientsSectionHeadingComponent";
 import ClientSectionCompanyLogosComponent from "@ScreenComponents/clients/clientSectionCompanyLogosComponent";
+import ClientSectionCompanyLogosDialogComponent from "@ScreenComponents/clients/clientSectionCompanyLogosDialogComponent";
 
 const ClientsIntroComponent = () => {
   const [visibleCards, setVisibleCards] = useState([]);
@@ -16,6 +17,7 @@ const ClientsIntroComponent = () => {
     { number: "150+", label: "Completed Projects", icon: Building },
     { number: "50+", label: "Happy Clients", icon: Star },
     { number: "15+", label: "Years Experience", icon: Settings },
+    { number: "75+", label: "Expert Engineers", icon: Users },
   ];
 
   const clientsData = [
@@ -118,6 +120,8 @@ const ClientsIntroComponent = () => {
           clientsData={clientsData}
           visibleCards={visibleCards}
         />
+
+        <ClientSectionCompanyLogosDialogComponent />
       </div>
     </section>
   );

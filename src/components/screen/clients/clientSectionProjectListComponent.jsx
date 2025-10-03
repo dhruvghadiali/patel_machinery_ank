@@ -108,8 +108,8 @@ const ClientSectionProjectListComponent = ({ projectsByClientCategory }) => {
               <TableCell className="font-medium">
                 {project.companyName}
               </TableCell>
+              <TableCell>{project.location }</TableCell>
               <TableCell>{project.projectDetails}</TableCell>
-              <TableCell>{project.location}</TableCell>
               <TableCell>{project.year}</TableCell>
               <TableCell>
                 <span

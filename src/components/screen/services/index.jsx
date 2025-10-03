@@ -1,45 +1,14 @@
 import { useEffect, useState, useRef } from "react";
+import { servicesData } from "@/utils/services";
+
 import ServicesSectionCardComponent from "@ScreenComponents/services/servicesSectionCardComponent";
 import ServicesSectionHeadingComponent from "@ScreenComponents/services/servicesSectionHeadingComponent";
 
 const ServicesIntroComponent = () => {
   const [visibleCards, setVisibleCards] = useState([]);
   const [hasAnimated, setHasAnimated] = useState(false);
+  
   const sectionRef = useRef(null);
-
-  const servicesData = [
-    {
-      label: "Pile Foundation",
-      description: "Transfer building loads to deeper, stronger soil layers.",
-      fullDescription:
-        "Our pile foundation solutions provide reliable support for structures by transferring loads to stable soil or rock layers deep beneath the surface.",
-      features: [
-        "Bored Cast-In-Situ Pile",
-        "Auger Pile",
-        "Micropiles",
-        "Foundation Design",
-      ],
-    },
-    {
-      label: "Pile Testing Solutions",
-      description: "Evaluate the load-bearing capacity of piles.",
-      fullDescription:
-        "Comprehensive pile testing services to verify structural integrity and load-bearing capacity using state-of-the-art testing equipment.",
-      features: [
-        "Static Load Testing",
-        "Dynamic Testing",
-        "Integrity Testing",
-        "Quality Assurance",
-      ],
-    },
-    {
-      label: "Rentals",
-      description: "Provide equipment and machinery for construction projects.",
-      fullDescription:
-        "Complete equipment rental solutions for construction projects with well-maintained machinery and expert technical support.",
-      features: ["Hydraulic Machinery", "Axiax Fiori Concrete Mixer"],
-    },
-  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
