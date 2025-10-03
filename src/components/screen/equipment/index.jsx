@@ -1,5 +1,10 @@
 import { useEffect, useState, useRef } from "react";
-import { Users, Truck, Settings } from "lucide-react";
+import { Users, Truck, Settings, Clock } from "lucide-react";
+import {
+  equipmentIcon1,
+  equipmentIcon2,
+  equipmentIcon3,
+} from "@/utils/images";
 
 import EquipmentSectionComponent from "@ScreenComponents/equipment/equipmentSectionComponent";
 import EquipmentSectionStatsComponent from "@ScreenComponents/equipment/equipmentSectionStatsComponent";
@@ -10,7 +15,7 @@ const equipmentData = [
     name: "Pile Boring",
     category: "Foundation Equipment",
     model: "HPD-2500X",
-    image: "🏗️",
+    image: equipmentIcon1,
     description:
       "High-performance hydraulic pile driver for deep foundation installations with precision control and minimal vibration.",
     specifications: ["Pile Diameter: 300-1200mm", "Operating Depth: 45m"],
@@ -20,7 +25,7 @@ const equipmentData = [
     name: "Load Testing Equipment",
     category: "Testing Systems",
     model: "LTE-5000",
-    image: "⚖️",
+    image: equipmentIcon2,
     description:
       "Comprehensive load testing system for pile capacity verification with real-time data acquisition.",
     specifications: [
@@ -39,7 +44,7 @@ const equipmentData = [
     name: "Crane with Pile Equipment",
     category: "Lifting Equipment",
     model: "CPE-200T",
-    image: "🏗️",
+    image: equipmentIcon3,
     description:
       "Mobile crane specially configured for pile installation with precision positioning and heavy lifting capacity.",
     specifications: [
@@ -64,6 +69,7 @@ const EquipmentIntroComponent = () => {
   const equipmentStats = [
     { number: "50+", label: "Heavy Equipment", icon: Truck },
     { number: "99%", label: "Uptime Record", icon: Settings },
+    { number: "2Hr", label: "Response Time", icon: Clock },
     { number: "24/7", label: "Technical Support", icon: Users },
   ];
 

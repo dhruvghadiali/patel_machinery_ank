@@ -18,8 +18,12 @@ const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
             <div className="p-6 sm:p-8 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center">
-                  <div className="text-4xl sm:text-5xl mr-4 group-hover:scale-110 transition-transform duration-300">
-                    {equipment.image}
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 mr-4 group-hover:scale-110 transition-transform duration-300 bg-orange-50 dark:bg-orange-900/20 rounded-xl flex items-center justify-center overflow-hidden">
+                    <img
+                      src={equipment.image}
+                      alt={`${equipment.name} equipment`}
+                      className="w-12 h-12 sm:w-16 sm:h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                    />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-orange-500 transition-colors duration-300">
