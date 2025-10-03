@@ -6,7 +6,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Building2, Sparkles, ArrowRight, Award, Users } from "lucide-react";
+import { Building2, Sparkles, ArrowRight, Award, Users, Eye } from "lucide-react";
 
 // Import company logo images
 import {
@@ -59,69 +59,53 @@ const ClientSectionCompanyLogosDialogComponent = () => {
       <div className="flex justify-center mt-10">
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            {/* Bottom CTA Section */}
-        <div className="relative text-center transition-all duration-1000 ease-out overflow-hidden">
-          {/* Animated Background with Floating Elements */}
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-400 via-amber-500 to-orange-600 rounded-3xl">
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent"></div>
-            {/* Floating geometric shapes */}
-            <div className="absolute top-4 left-4 w-16 h-16 bg-white/10 rounded-full blur-sm animate-pulse"></div>
-            <div className="absolute top-1/2 right-8 w-8 h-8 bg-amber-200/20 rounded-lg rotate-45 animate-bounce"></div>
-            <div className="absolute bottom-6 left-1/4 w-12 h-12 bg-white/5 rounded-full animate-ping"></div>
-            <div className="absolute top-1/4 right-1/4 w-6 h-6 bg-amber-300/30 rounded-full animate-pulse delay-300"></div>
-          </div>
-          
-          {/* Main Content */}
-          <div className="relative z-10 backdrop-blur-sm bg-white/5 rounded-3xl border border-white/20 p-8 sm:p-12 md:p-16 text-white shadow-2xl">
-            {/* Icon Header */}
-            <div className="flex justify-center mb-6">
-              <div className="relative">
-                <div className="absolute inset-0 bg-white/20 rounded-2xl blur-lg"></div>
-                <div className="relative bg-gradient-to-br from-white/20 to-white/10 p-4 rounded-2xl border border-white/30">
-                  <Building2 className="w-12 h-12 text-amber-100" />
+            <div className="relative group cursor-pointer">
+              {/* Background glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-400 rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+              
+              {/* Main button container */}
+              <div className="relative bg-gradient-to-br from-orange-500 via-orange-600 to-amber-600 rounded-3xl p-1 shadow-2xl group-hover:shadow-orange-500/25 transition-all duration-500">
+                {/* Inner button */}
+                <div className="relative bg-gradient-to-r from-white/10 to-transparent backdrop-blur-sm rounded-3xl px-8 sm:px-12 py-5 sm:py-6 overflow-hidden">
+                  {/* Animated background pattern */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                  
+                  {/* Floating elements */}
+                  <div className="absolute top-2 right-4 w-2 h-2 bg-white/20 rounded-full animate-pulse"></div>
+                  <div className="absolute bottom-3 left-6 w-1 h-1 bg-amber-200/40 rounded-full animate-ping delay-300"></div>
+                  
+                  {/* Button content */}
+                  <div className="relative z-10 flex items-center space-x-4 text-white">
+                    {/* Icon container */}
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-white/20 rounded-xl blur-sm"></div>
+                      <div className="relative bg-white/10 p-3 rounded-xl border border-white/20 group-hover:scale-110 transition-transform duration-300">
+                        <Eye className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
+                      </div>
+                    </div>
+                    
+                    {/* Text content */}
+                    <div className="flex flex-col items-start">
+                      <span className="text-lg sm:text-xl font-bold leading-tight">View All Our Clients</span>
+                      <span className="text-sm opacity-90 font-medium">Explore our partnerships</span>
+                    </div>
+                    
+                    {/* Arrow container */}
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-0.5 bg-white/60 group-hover:bg-white transition-colors duration-300"></div>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Bottom stats indicator */}
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-lg border border-gray-200 dark:border-gray-700">
+                  <span className="text-xs font-semibold text-gray-600 dark:text-gray-400">17+ Partners Available</span>
                 </div>
               </div>
             </div>
-            
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 leading-tight">
-              Meet Our <span className="text-amber-200 relative">
-                <span className="relative z-10">Trusted Partners</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-300/30 to-yellow-300/30 blur-lg"></div>
-              </span>
-            </h3>
-            
-            <p className="text-lg sm:text-xl lg:text-2xl mb-8 sm:mb-10 opacity-95 max-w-4xl mx-auto leading-relaxed">
-              Discover the prestigious companies who have chosen <span className="font-semibold text-amber-200">Patel Construction</span> for their most critical foundation 
-              engineering projects. From industrial giants to renewable energy leaders.
-            </p>
-            
-            {/* Stats Row */}
-            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mb-8 sm:mb-10">
-              <div className="flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2 backdrop-blur-sm">
-                <Award className="w-5 h-5 text-amber-200" />
-                <span className="text-sm font-semibold">17+ Partners</span>
-              </div>
-              <div className="flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2 backdrop-blur-sm">
-                <Users className="w-5 h-5 text-amber-200" />
-                <span className="text-sm font-semibold">Industry Leaders</span>
-              </div>
-              <div className="flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2 backdrop-blur-sm">
-                <Sparkles className="w-5 h-5 text-amber-200" />
-                <span className="text-sm font-semibold">Trusted Quality</span>
-              </div>
-            </div>
-            
-            {/* Enhanced Button */}
-            <div className="flex justify-center">
-              <button className="group relative bg-white text-orange-600 hover:bg-gray-50 font-bold py-5 px-10 sm:px-16 rounded-2xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl text-lg lg:text-xl flex items-center space-x-3 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-amber-500/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
-                <Building2 className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-                <span className="relative z-10">View All Our Clients</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-            </div>
-          </div>
-        </div>
           </DialogTrigger>
           <DialogContent className="max-w-6xl max-h-[85vh] overflow-y-auto bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 border-0 shadow-2xl">
             <DialogHeader className="relative">
