@@ -23,8 +23,6 @@ const servicesData = [
     technicalSpecs: [
       "Pile diameters: 300mm to 1200mm",
       "Maximum depth: Up to 60 meters",
-      "Load capacity: 50 tons to 500 tons per pile",
-      "Concrete grade: M25 to M40",
       "Reinforcement: As per structural design",
     ],
     applications: [
@@ -91,21 +89,20 @@ const servicesData = [
     description: "Provide equipment and machinery for construction projects.",
     fullDescription:
       "Complete equipment rental solutions for construction projects with well-maintained machinery and expert technical support.",
-    features: ["Hydraulic Machinery", "Ajax Fiori Concrete Mixer"],
+    features: ["Hydraulic Machinery", "Ajax Fiori Self Loading Concrete Mixer"],
     detailedDescription:
       "Our equipment rental division provides comprehensive construction machinery and specialized equipment for various construction projects. With a modern fleet of well-maintained equipment and expert technical support, we ensure your projects run smoothly and efficiently.",
     process: [
       "Project requirement assessment",
       "Equipment selection and recommendation",
       "Pre-delivery inspection and testing",
-      "Transportation and site delivery",
       "On-site setup and commissioning",
       "Operator training and support",
       "Maintenance and technical assistance",
     ],
     technicalSpecs: [
-      "Hydraulic machinery: 10 ton to 200 ton capacity",
-      "Concrete mixers: 0.5 cu.m to 2 cu.m capacity",
+      "Hydraulic machinery: 10 ton to 50 ton capacity",
+      "Concrete mixers: 4 cm capacity",
       "Operating hours: 8-24 hours daily availability",
       "Fuel efficiency: Optimized for cost-effectiveness",
       "Maintenance: Regular servicing included",

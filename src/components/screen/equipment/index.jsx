@@ -22,42 +22,59 @@ const equipmentData = [
     applications: ["Bridge Foundations", "Building Piles", "Marine Structures"],
   },
   {
-    name: "Load Testing Equipment",
-    category: "Testing Systems",
-    model: "LTE-5000",
+    name: "Backhoe Loader",
+    category: "Excavation Equipment",
+    model: "JCB-3DX",
     image: equipmentIcon2,
     description:
-      "Comprehensive load testing system for pile capacity verification with real-time data acquisition.",
+      "Versatile backhoe loader for excavation, loading, and material handling operations with superior performance and reliability.",
     specifications: [
-      "Max Test Load: 5,000 kN",
-      "Accuracy: ±0.1%",
-      "Data Points: 1000/sec",
-      "Displacement Range: 200mm",
+      "Engine Power: 74 HP",
+      "Dig Depth: 5.7m",
     ],
     applications: [
-      "Static Load Testing",
-      "Dynamic Testing",
-      "Integrity Testing",
+      "Site Excavation",
+      "Material Loading",
+      "Trenching Work",
     ],
   },
+  // {
+  //   name: "Crane with Pile Equipment",
+  //   category: "Lifting Equipment",
+  //   model: "CPE-200T",
+  //   image: equipmentIcon3,
+  //   description:
+  //     "Mobile crane specially configured for pile installation with precision positioning and heavy lifting capacity.",
+  //   specifications: [
+  //     "Lifting Capacity: 50 tons",
+  //     "Boom Length: 29m",
+  //     "Working Radius: 20m",
+  //   ],
+  //   applications: [
+  //     "RMC Casting",
+  //     "Heavy Equipment Placement",
+  //     "Material Handling",
+  //   ],
+  // },
   {
-    name: "Crane with Pile Equipment",
-    category: "Lifting Equipment",
-    model: "CPE-200T",
-    image: equipmentIcon3,
+    name: "Self Concrete Mixer Machine",
+    category: "Concrete Equipment",
+    model: "AF-4000",
+    image: equipmentIcon1,
     description:
-      "Mobile crane specially configured for pile installation with precision positioning and heavy lifting capacity.",
+      "Self-loading concrete mixer truck with automated mixing and precise concrete delivery for construction sites.",
     specifications: [
-      "Lifting Capacity: 50 tons",
-      "Boom Length: 29m",
-      "Working Radius: 20m",
+      "Mixing Capacity: 4 cubic meters",
+      "Loading Height: 4.1m",
+      "Water Tank: 400 liters",
     ],
     applications: [
-      "RMC Casting",
-      "Heavy Equipment Placement",
-      "Material Handling",
+      "Concrete Mixing",
+      "On-site Concrete Production",
+      "Remote Site Operations",
     ],
   },
+  
 ];
 
 const EquipmentIntroComponent = () => {

@@ -13,7 +13,7 @@ import {
 
 // Featured company logos for scrolling display (subset)
 const featuredCompanyLogos = [
-  { name: "AFCL", logo: afclLogo, color: "from-gray-600 to-gray-700" },
+  { name: "Atvantic", logo: afclLogo, color: "from-gray-600 to-gray-700" },
   { name: "Adani Group", logo: adaniLogo, color: "from-blue-600 to-blue-700" },
   { name: "L&T Geo", logo: ltGeoLogo, color: "from-orange-500 to-orange-600" },
   { name: "Desai", logo: desaiLogo, color: "from-red-600 to-red-700" },

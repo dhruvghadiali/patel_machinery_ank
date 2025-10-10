@@ -2,10 +2,10 @@ import { Wrench, Shield } from "lucide-react";
 
 const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
       {equipmentData.map((equipment, index) => (
         <div
-          key={index}
+          key={`equipment-${index}-${equipment.name}`}
           className={`group transition-all duration-700 ease-out transform ${
             visibleCards.includes(index)
               ? "opacity-100 translate-y-0 scale-100"
@@ -32,9 +32,7 @@ const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
                     <p className="text-sm sm:text-base text-orange-600 dark:text-orange-400 font-medium mb-1">
                       {equipment.category}
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Model: {equipment.model}
-                    </p>
+                    
                   </div>
                 </div>
               </div>
@@ -51,7 +49,7 @@ const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
                   <Wrench className="w-5 h-5 mr-2 text-orange-500" />
                   Specifications
                 </h4>
-                <div className="space-y-2 h-32">
+                <div className="space-y-2 h-20">
                   {equipment.specifications.map((spec, specIndex) => (
                     <div
                       key={specIndex}

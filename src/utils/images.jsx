@@ -16,6 +16,9 @@ import smpLogo from "@/assets/images/SMP.jpg";
 import spcplLogo from "@/assets/images/SPCPL.jpg";
 import thermaxLogo from "@/assets/images/THERMAX.jpg";
 import torrentLogo from "@/assets/images/TORRENT.jpg";
+import amns from "@/assets/images/amns.png";
+import vmc from "@/assets/images/vmc.png";
+
 
 // Equipment Images
 import equipmentIcon1 from "@/assets/images/icon1.png";
@@ -41,6 +44,8 @@ export {
   spcplLogo,
   thermaxLogo,
   torrentLogo,
+  amns,
+  vmc,
   // Equipment Images
   equipmentIcon1,
   equipmentIcon2,
