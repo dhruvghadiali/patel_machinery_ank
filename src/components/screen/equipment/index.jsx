@@ -4,6 +4,9 @@ import {
   equipmentIcon1,
   equipmentIcon2,
   equipmentIcon3,
+  equipmentIcon4,
+  equipmentIcon5,
+  equipmentIcon6,
 } from "@/utils/images";
 
 import EquipmentSectionComponent from "@ScreenComponents/equipment/equipmentSectionComponent";
@@ -20,47 +23,55 @@ const equipmentData = [
       "High-performance hydraulic pile driver for deep foundation installations with precision control and minimal vibration.",
     specifications: ["Pile Diameter: 300-1200mm", "Operating Depth: 45m"],
     applications: ["Bridge Foundations", "Building Piles", "Marine Structures"],
+    qty: [
+      { model: "SR 150 C (Sany)", quantity: 1 },
+      { model: "SR 155 C10 (Sany)", quantity: 9 },
+      { model: "ACE SA-60", quantity: 1 },
+      { model: "SR 125 (Sany)", quantity: 2 },
+      { model: "SR 65 (Sany)", quantity: 1 },
+      { model: "Zoomlion (ZR140)", quantity: 3 },
+      { model: "Zoomlion (ZR185)", quantity: 2 },
+    ],
   },
   {
     name: "Backhoe Loader",
     category: "Excavation Equipment",
     model: "JCB-3DX",
-    image: equipmentIcon2,
+    image: equipmentIcon6,
     description:
       "Versatile backhoe loader for excavation, loading, and material handling operations with superior performance and reliability.",
+    specifications: ["Engine Power: 74 HP", "Dig Depth: 5.7m"],
+    applications: ["Site Excavation", "Material Loading", "Trenching Work"],
+    qty: [{ model: "JCB", quantity: 4 }],
+  },
+  {
+    name: "Crane with Pile Equipment",
+    category: "Lifting Equipment",
+    model: "CPE-200T",
+    image: equipmentIcon3,
+    description:
+      "Mobile crane specially configured for pile installation with precision positioning and heavy lifting capacity.",
     specifications: [
-      "Engine Power: 74 HP",
-      "Dig Depth: 5.7m",
+      "Lifting Capacity: 50 tons",
+      "Boom Length: 29m",
+      "Working Radius: 20m",
     ],
     applications: [
-      "Site Excavation",
-      "Material Loading",
-      "Trenching Work",
+      "RMC Casting",
+      "Heavy Equipment Placement",
+      "Material Handling",
+    ],
+    qty: [
+      { model: "Zoomlion Crane (50 MT)", quantity: 1 },
+      { model: "Hydra Crane", quantity: 1 },
+      { model: "ACE Hydraulic Mobile Crane F120", quantity: 2 },
     ],
   },
-  // {
-  //   name: "Crane with Pile Equipment",
-  //   category: "Lifting Equipment",
-  //   model: "CPE-200T",
-  //   image: equipmentIcon3,
-  //   description:
-  //     "Mobile crane specially configured for pile installation with precision positioning and heavy lifting capacity.",
-  //   specifications: [
-  //     "Lifting Capacity: 50 tons",
-  //     "Boom Length: 29m",
-  //     "Working Radius: 20m",
-  //   ],
-  //   applications: [
-  //     "RMC Casting",
-  //     "Heavy Equipment Placement",
-  //     "Material Handling",
-  //   ],
-  // },
   {
     name: "Self Concrete Mixer Machine",
     category: "Concrete Equipment",
     model: "AF-4000",
-    image: equipmentIcon1,
+    image: equipmentIcon4,
     description:
       "Self-loading concrete mixer truck with automated mixing and precise concrete delivery for construction sites.",
     specifications: [
@@ -73,8 +84,10 @@ const equipmentData = [
       "On-site Concrete Production",
       "Remote Site Operations",
     ],
+    qty: [
+      { model: "Self Loading Concrete Mixer (4 CM Ajax Fiori)", quantity: 1 },
+    ],
   },
-  
 ];
 
 const EquipmentIntroComponent = () => {

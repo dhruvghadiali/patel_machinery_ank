@@ -24,6 +24,9 @@ import vmc from "@/assets/images/vmc.png";
 import equipmentIcon1 from "@/assets/images/icon1.png";
 import equipmentIcon2 from "@/assets/images/icon2.png";
 import equipmentIcon3 from "@/assets/images/icon3.png";
+import equipmentIcon4 from "@/assets/images/icon4.png";
+import equipmentIcon5 from "@/assets/images/icon5.png";
+import equipmentIcon6 from "@/assets/images/icon6.png";
 
 export {
   adaniLogo,
@@ -50,4 +53,7 @@ export {
   equipmentIcon1,
   equipmentIcon2,
   equipmentIcon3,
+  equipmentIcon4,
+  equipmentIcon5,
+  equipmentIcon6,
 };
