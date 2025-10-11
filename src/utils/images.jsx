@@ -16,11 +16,17 @@ import smpLogo from "@/assets/images/SMP.jpg";
 import spcplLogo from "@/assets/images/SPCPL.jpg";
 import thermaxLogo from "@/assets/images/THERMAX.jpg";
 import torrentLogo from "@/assets/images/TORRENT.jpg";
+import amns from "@/assets/images/amns.png";
+import vmc from "@/assets/images/vmc.png";
+
 
 // Equipment Images
 import equipmentIcon1 from "@/assets/images/icon1.png";
 import equipmentIcon2 from "@/assets/images/icon2.png";
 import equipmentIcon3 from "@/assets/images/icon3.png";
+import equipmentIcon4 from "@/assets/images/icon4.png";
+import equipmentIcon5 from "@/assets/images/icon5.png";
+import equipmentIcon6 from "@/assets/images/icon6.png";
 
 export {
   adaniLogo,
@@ -41,8 +47,13 @@ export {
   spcplLogo,
   thermaxLogo,
   torrentLogo,
+  amns,
+  vmc,
   // Equipment Images
   equipmentIcon1,
   equipmentIcon2,
   equipmentIcon3,
+  equipmentIcon4,
+  equipmentIcon5,
+  equipmentIcon6,
 };

@@ -27,27 +27,31 @@ import {
   spcplLogo,
   thermaxLogo,
   torrentLogo,
+  amns,
+  vmc,
 } from "@/utils/images";
 
 // Company logos data (all available companies)
 const allCompanyLogos = [
   { name: "Adani Group", logo: adaniLogo, color: "from-blue-600 to-blue-700" },
-  { name: "AFCL", logo: afclLogo, color: "from-gray-600 to-gray-700" },
-  { name: "BD Buildcom", logo: bdBuildcomLogo, color: "from-orange-600 to-orange-700" },
+  { name: "Atvantic", logo: afclLogo, color: "from-gray-600 to-gray-700" },
+  { name: "AM/NS India", logo: amns, color: "from-gray-600 to-gray-700" },
+  { name: "BD Buildcon", logo: bdBuildcomLogo, color: "from-orange-600 to-orange-700" },
   { name: "Desai", logo: desaiLogo, color: "from-red-600 to-red-700" },
   { name: "DFPCL", logo: dfpclLogo, color: "from-blue-500 to-blue-600" },
   { name: "GACL", logo: gaclLogo, color: "from-teal-600 to-teal-700" },
-  { name: "HARIC", logo: haricLogo, color: "from-purple-600 to-purple-700" },
+  { name: "Hari Construction", logo: haricLogo, color: "from-purple-600 to-purple-700" },
   { name: "KLJ", logo: kljLogo, color: "from-indigo-600 to-indigo-700" },
   { name: "LT Geo", logo: ltGeoLogo, color: "from-orange-500 to-orange-600" },
   { name: "PSP", logo: pspLogo, color: "from-blue-500 to-blue-600" },
   { name: "Rayzon", logo: rayzonLogo, color: "from-purple-500 to-purple-600" },
   { name: "RBIPL", logo: rbiplLogo, color: "from-green-500 to-green-600" },
-  { name: "SBPL", logo: sbplLogo, color: "from-yellow-500 to-yellow-600" },
+  { name: "Suroj Buildcon", logo: sbplLogo, color: "from-yellow-500 to-yellow-600" },
   { name: "SMP", logo: smpLogo, color: "from-red-500 to-red-600" },
-  { name: "SPCPL", logo: spcplLogo, color: "from-cyan-500 to-cyan-600" },
+  { name: "Shapoorji Pallonji", logo: spcplLogo, color: "from-cyan-500 to-cyan-600" },
   { name: "Thermax", logo: thermaxLogo, color: "from-green-600 to-green-700" },
   { name: "Torrent", logo: torrentLogo, color: "from-blue-600 to-blue-700" },
+  { name: "VMC", logo: vmc, color: "from-gray-600 to-gray-700" },
 ];
 
 const ClientSectionCompanyLogosDialogComponent = () => {

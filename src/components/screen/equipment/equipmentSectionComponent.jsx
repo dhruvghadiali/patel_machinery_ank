@@ -1,17 +1,42 @@
+import React, { useState } from "react";
 import { Wrench, Shield } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
+  const [selectedEquipment, setSelectedEquipment] = useState(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleCardClick = (equipment) => {
+    setSelectedEquipment(equipment);
+    setIsDialogOpen(true);
+  };
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
       {equipmentData.map((equipment, index) => (
         <div
-          key={index}
+          key={`equipment-${index}-${equipment.name}`}
           className={`group transition-all duration-700 ease-out transform ${
             visibleCards.includes(index)
               ? "opacity-100 translate-y-0 scale-100"
               : "opacity-0 translate-y-12 scale-95"
           }`}
           style={{ transitionDelay: `${index * 150}ms` }}
+          onClick={() => handleCardClick(equipment)}
         >
           <div className="bg-white dark:bg-slate-800 hover:cursor-pointer rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:border-orange-300 dark:group-hover:border-orange-600 group-hover:-translate-y-2">
             {/* Equipment Header */}
@@ -32,9 +57,7 @@ const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
                     <p className="text-sm sm:text-base text-orange-600 dark:text-orange-400 font-medium mb-1">
                       {equipment.category}
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Model: {equipment.model}
-                    </p>
+                    
                   </div>
                 </div>
               </div>
@@ -51,7 +74,7 @@ const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
                   <Wrench className="w-5 h-5 mr-2 text-orange-500" />
                   Specifications
                 </h4>
-                <div className="space-y-2 h-32">
+                <div className="space-y-2 h-20">
                   {equipment.specifications.map((spec, specIndex) => (
                     <div
                       key={specIndex}
@@ -79,7 +102,7 @@ const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
                   <Shield className="w-5 h-5 mr-2 text-orange-500" />
                   Applications
                 </h4>
-                <div className="h-28">
+                <div className="min-h-16">
                 <div className="flex flex-wrap gap-2">
                   {equipment.applications.map((app, appIndex) => (
                     <span
@@ -96,6 +119,63 @@ const EquipmentSectionComponent = ({ equipmentData, visibleCards }) => {
           </div>
         </div>
       ))}
+
+      {/* Equipment Quantity Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-center mb-4">
+              {selectedEquipment?.name} - Equipment Inventory
+            </DialogTitle>
+            <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
+              Available equipment units and quantities
+            </p>
+          </DialogHeader>
+          
+          {selectedEquipment && (
+            <div className="mt-6">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-gray-50 dark:bg-gray-800">
+                    <TableHead className="font-semibold text-gray-700 dark:text-gray-300">
+                      Equipment Model
+                    </TableHead>
+                    <TableHead className="font-semibold text-gray-700 dark:text-gray-300 text-center">
+                      Quantity
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {selectedEquipment.qty?.map((item, index) => (
+                    <TableRow key={index} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <TableCell className="font-medium text-gray-900 dark:text-gray-100">
+                        {item.model}
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <span className="px-3 py-1 bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400 font-semibold rounded-full">
+                          {item.quantity}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              
+              {/* Total Count */}
+              <div className="mt-6 p-4 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-lg">
+                <div className="flex justify-between items-center">
+                  <span className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                    Total Equipment Count:
+                  </span>
+                  <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                    {selectedEquipment.qty?.reduce((total, item) => total + item.quantity, 0)}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
