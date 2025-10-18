@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Users, Target, Award, Heart, Lightbulb, Shield, Globe, Handshake } from "lucide-react";
+import { Users, Target, Award, Heart, Lightbulb, Shield, Globe, Handshake, Phone, Mail, MapPin } from "lucide-react";
 
 const teamMembers = [
   {
@@ -90,6 +90,18 @@ const companyStats = [
   { number: "50+", label: "Team Members", icon: Users },
   { number: "Zero", label: "Lost Time Incidents", icon: Shield }
 ];
+
+const contactInfo = {
+  phone: "+91 96017 51259", 
+  email: "patelconstruction13@gmail.com", 
+  addressLines: [
+    "B-59 TO 62 Signature Galleria,", 
+    "Mahavir Tarning Ankleshwar-393002",
+  ],
+  mapEmbedUrl:
+    // Embed by name + coordinates for a clearer pin label
+    "https://www.google.com/maps?q=Signature+Gallaria,21.6331157,73.0050456&z=17&hl=en&output=embed",
+};
 
 function AboutUsIntroComponent() {
   const [visibleElements, setVisibleElements] = useState({
@@ -320,6 +332,106 @@ function AboutUsIntroComponent() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="mb-16 sm:mb-20 md:mb-24">
+          <div
+            className={`text-center mb-12 transition-all duration-1000 ease-out ${
+              hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Get in <span className="text-orange-500">Touch</span>
+            </h3>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              We'd love to discuss your next project. Reach us via phone, email, or visit our office.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Contact cards */}
+            <div className="space-y-6">
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mr-4">
+                    <Phone className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Contact Number</h4>
+                    <a
+                      href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+                      className="text-orange-600 dark:text-orange-400 font-medium hover:underline"
+                    >
+                      {contactInfo.phone}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mr-4">
+                    <Mail className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Email Address</h4>
+                    <a
+                      href={`mailto:${contactInfo.email}`}
+                      className="text-orange-600 dark:text-orange-400 font-medium hover:underline break-all"
+                    >
+                      {contactInfo.email}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mr-4">
+                    <MapPin className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Company Address</h4>
+                    <address className="not-italic text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {contactInfo.addressLines.map((line, idx) => (
+                        <div key={idx}>{line}</div>
+                      ))}
+                    </address>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Google Map */}
+            <div>
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-2 sm:p-3 border border-gray-200 dark:border-gray-700 h-full">
+                <div className="relative w-full h-[280px] sm:h-[360px] md:h-[420px] lg:h-full min-h-[320px] overflow-hidden rounded-xl">
+                  <iframe
+                    title="Company Location"
+                    src={contactInfo.mapEmbedUrl}
+                    width="100%"
+                    height="100%"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                    className="w-full h-full rounded-xl border-0"
+                  ></iframe>
+                  {/* Fallback link if the embed is blocked */}
+                  <div className="absolute bottom-2 right-2 bg-white/80 dark:bg-gray-900/80 rounded-md px-2 py-1 text-xs">
+                    <a
+                      href="https://maps.google.com/?q=21.6331157,73.0050456"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-orange-600 dark:text-orange-400 hover:underline"
+                    >
+                      Open in Google Maps
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

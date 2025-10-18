@@ -15,7 +15,7 @@ import EquipmentSectionHeadingComponent from "@ScreenComponents/equipment/equipm
 
 const equipmentData = [
   {
-    name: "Pile Boring",
+    name: "Hydraulic Piling Rig",
     category: "Foundation Equipment",
     model: "HPD-2500X",
     image: equipmentIcon1,
@@ -32,17 +32,6 @@ const equipmentData = [
       { model: "Zoomlion (ZR140)", quantity: 3 },
       { model: "Zoomlion (ZR185)", quantity: 2 },
     ],
-  },
-  {
-    name: "Backhoe Loader",
-    category: "Excavation Equipment",
-    model: "JCB-3DX",
-    image: equipmentIcon6,
-    description:
-      "Versatile backhoe loader for excavation, loading, and material handling operations with superior performance and reliability.",
-    specifications: ["Engine Power: 74 HP", "Dig Depth: 5.7m"],
-    applications: ["Site Excavation", "Material Loading", "Trenching Work"],
-    qty: [{ model: "JCB", quantity: 4 }],
   },
   {
     name: "Crane with Pile Equipment",
@@ -62,13 +51,26 @@ const equipmentData = [
       "Material Handling",
     ],
     qty: [
-      { model: "Zoomlion Crane (50 MT)", quantity: 1 },
+      { model: "Zoomlion Crane (50 T)", quantity: 1 },
+      { model: "Sany Crawler Crane (50 T)", quantity: 1 },
       { model: "Hydra Crane", quantity: 1 },
-      { model: "ACE Hydraulic Mobile Crane F120", quantity: 2 },
+      { model: "ACE Hydraulic Mobile Crane F120 (20 T)", quantity: 3 },
     ],
   },
   {
-    name: "Self Concrete Mixer Machine",
+    name: "Backhoe Loader",
+    category: "Excavation Equipment",
+    model: "JCB-3DX",
+    image: equipmentIcon6,
+    description:
+      "Versatile backhoe loader for excavation, loading, and material handling operations with superior performance and reliability.",
+    specifications: ["Engine Power: 74 HP", "Dig Depth: 5.7m"],
+    applications: ["Site Excavation", "Material Loading", "Trenching Work"],
+    qty: [{ model: "CASE 770", quantity: 4 }],
+  },
+
+  {
+    name: "Self Loading Mixer Machine",
     category: "Concrete Equipment",
     model: "AF-4000",
     image: equipmentIcon4,
@@ -85,7 +87,7 @@ const equipmentData = [
       "Remote Site Operations",
     ],
     qty: [
-      { model: "Self Loading Concrete Mixer (4 CM Ajax Fiori)", quantity: 1 },
+      { model: "Self Loading Concrete Mixer (4 CM Ajax Fiori)", quantity: 5 },
     ],
   },
 ];
