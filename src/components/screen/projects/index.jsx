@@ -238,11 +238,11 @@ function ProjectsIntroComponent() {
                     <TableRow className="bg-gray-50 dark:bg-gray-800">
                       <TableHead 
                         className="font-semibold text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-                        onClick={() => handleSort('company')}
+                        onClick={() => handleSort('companyName')}
                       >
                         <div className="flex items-center justify-between">
                           <span>Company Name</span>
-                          {renderSortIcon('company')}
+                          {renderSortIcon('companyName')}
                         </div>
                       </TableHead>
                       <TableHead 

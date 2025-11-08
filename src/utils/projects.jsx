@@ -108,6 +108,15 @@ const projects = [
         status: "Completed",
         location: "Surat Gujarat",
     },
+    {
+        companyName:"AM/NS India LTD.",
+        companyLogo:"",
+        category: "Industrial Construction",
+        projectDetails: "Piling work",
+        year: "2025",
+        status: "In Progress",
+        location: "Hazira Gujarat",
+    },
 ];
 
 export { projects };
