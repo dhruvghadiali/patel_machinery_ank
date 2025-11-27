@@ -1,5 +1,15 @@
 import { useEffect, useState, useRef } from "react";
-import { Users, Target, Award, Heart, Lightbulb, Shield, Globe, Handshake, Phone, Mail, MapPin } from "lucide-react";
+import { Users, Target, Award, Heart, Lightbulb, Shield, Globe, Handshake, Phone, Mail, MapPin, Upload, X, CheckCircle } from "lucide-react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const teamMembers = [
   {
@@ -103,6 +113,90 @@ const contactInfo = {
     "https://www.google.com/maps?q=Signature+Gallaria,21.6331157,73.0050456&z=17&hl=en&output=embed",
 };
 
+const departments = [
+  "Foundation Engineering",
+  "Structural Design",
+  "Project Management",
+  "Site Operations",
+  "Safety & Quality Control",
+  "Equipment Operations",
+  "Business Development",
+  "Administration",
+  "Human Resources",
+  "Finance & Accounting"
+];
+
+const preferredTimes = [
+  "Morning (9:00 AM - 12:00 PM)",
+  "Afternoon (12:00 PM - 3:00 PM)",
+  "Evening (3:00 PM - 6:00 PM)",
+  "Anytime"
+];
+
+// Yup validation schema for job application
+const jobApplicationSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .min(2, 'First name must be at least 2 characters')
+    .max(50, 'First name must not exceed 50 characters')
+    .matches(/^[a-zA-Z\s]+$/, 'First name can only contain letters')
+    .required('First name is required'),
+  lastName: Yup.string()
+    .min(2, 'Last name must be at least 2 characters')
+    .max(50, 'Last name must not exceed 50 characters')
+    .matches(/^[a-zA-Z\s]+$/, 'Last name can only contain letters')
+    .required('Last name is required'),
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('Email is required'),
+  phone: Yup.string()
+    .matches(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits without country code')
+    .test('no-country-code', 'Please enter only 10 digits without country code (+91, +1, etc.)', (value) => {
+      return value && !value.includes('+');
+    })
+    .required('Phone number is required'),
+  department: Yup.string()
+    .oneOf(departments, 'Please select a valid department')
+    .required('Department is required'),
+  resume: Yup.mixed()
+    .required('Resume is required')
+    .test('fileSize', 'File size must be less than 5MB', (value) => {
+      return value && value.size <= 5242880; // 5MB
+    })
+    .test('fileType', 'Only PDF files are allowed', (value) => {
+      return value && value.type === 'application/pdf';
+    })
+});
+
+// Yup validation schema for contact us
+const contactUsSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .min(2, 'First name must be at least 2 characters')
+    .max(50, 'First name must not exceed 50 characters')
+    .matches(/^[a-zA-Z\s]+$/, 'First name can only contain letters')
+    .required('First name is required'),
+  lastName: Yup.string()
+    .min(2, 'Last name must be at least 2 characters')
+    .max(50, 'Last name must not exceed 50 characters')
+    .matches(/^[a-zA-Z\s]+$/, 'Last name can only contain letters')
+    .required('Last name is required'),
+  companyName: Yup.string()
+    .min(2, 'Company name must be at least 2 characters')
+    .max(100, 'Company name must not exceed 100 characters')
+    .required('Company name is required'),
+  companyEmail: Yup.string()
+    .email('Invalid email address')
+    .required('Company email is required'),
+  companyContactNumber: Yup.string()
+    .matches(/^[0-9]{10}$/, 'Contact number must be exactly 10 digits without country code')
+    .test('no-country-code', 'Please enter only 10 digits without country code (+91, +1, etc.)', (value) => {
+      return value && !value.includes('+');
+    })
+    .required('Company contact number is required'),
+  preferredTime: Yup.string()
+    .oneOf(preferredTimes, 'Please select a valid preferred time')
+    .required('Preferred time is required')
+});
+
 function AboutUsIntroComponent() {
   const [visibleElements, setVisibleElements] = useState({
     stats: [],
@@ -110,8 +204,13 @@ function AboutUsIntroComponent() {
     team: [],
     milestones: []
   });
+  const [isJobDialogOpen, setIsJobDialogOpen] = useState(false);
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ show: false, success: false, message: '' });
+  const [contactSubmitStatus, setContactSubmitStatus] = useState({ show: false, success: false, message: '' });
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -184,6 +283,204 @@ function AboutUsIntroComponent() {
       }
     };
   }, [hasAnimated]);
+
+  const handleJobFormSubmit = async (values, { setSubmitting, resetForm }) => {
+    const maxRetries = 5;
+    let lastError = null;
+
+    try {
+      // Create FormData to send file along with other form fields
+      const formData = new FormData();
+      formData.append('firstName', values.firstName);
+      formData.append('lastName', values.lastName);
+      formData.append('email', values.email);
+      formData.append('phone', values.phone);
+      formData.append('department', values.department);
+      formData.append('resume', values.resume); // This is the actual file object
+
+      // Retry logic - try up to maxRetries times
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          console.log(`Attempt ${attempt} of ${maxRetries} to submit application...`);
+
+          // Send to backend API
+          const response = await fetch('https://patel-construction-api.onrender.com/api/sendJobApplication', {
+            method: 'POST',
+            body: formData,
+            // Don't set Content-Type header - browser will set it automatically with boundary
+          });
+
+          const result = await response.json();
+
+          if (!response.ok || !result.success) {
+            throw new Error(result.error || 'Failed to send application');
+          }
+
+          // If successful, break out of retry loop
+          lastError = null;
+          
+          // Log successful submission
+          console.log('Job Application Submitted Successfully:', {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            phone: values.phone,
+            department: values.department,
+            resume: values.resume.name,
+            emailIds: {
+              hrEmail: result.hrEmailId,
+              confirmationEmail: result.confirmationEmailId
+            },
+            attempt: attempt
+          });
+
+          // Show success message
+          setSubmitStatus({
+            show: true,
+            success: true,
+            message: 'Thank you for your application! We will review it and get back to you soon.'
+          });
+
+          // Reset form after successful submission
+          resetForm();
+          if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+          }
+
+          // Close dialog after 2 seconds
+          setTimeout(() => {
+            setIsJobDialogOpen(false);
+            setSubmitStatus({ show: false, success: false, message: '' });
+          }, 2000);
+
+          return; // Exit the function on success
+
+        } catch (error) {
+          lastError = error;
+          console.error(`Attempt ${attempt} failed:`, error.message);
+
+          // If this is not the last attempt, wait before retrying
+          if (attempt < maxRetries) {
+            console.log(`Retrying in 1 second...`);
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second before retry
+          }
+        }
+      }
+
+      // If we get here, all retries failed
+      if (lastError) {
+        throw lastError;
+      }
+
+      // If we get here, all retries failed
+      if (lastError) {
+        throw lastError;
+      }
+
+    } catch (error) {
+      console.error('Error submitting application after all retries:', error);
+      setSubmitStatus({
+        show: true,
+        success: false,
+        message: `Failed to submit application after ${maxRetries} attempts. Please check your connection and try again.`
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleContactFormSubmit = async (values, { setSubmitting, resetForm }) => {
+    const maxRetries = 5;
+    let lastError = null;
+
+    try {
+      // Retry logic - try up to maxRetries times
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          console.log(`Attempt ${attempt} of ${maxRetries} to submit contact form...`);
+
+          // Send to backend API
+          const response = await fetch('https://patel-construction-api.onrender.com/api/contactUs', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              firstName: values.firstName,
+              lastName: values.lastName,
+              companyName: values.companyName,
+              companyEmail: values.companyEmail,
+              contactNumber: values.companyContactNumber,
+              preferredTime: values.preferredTime
+            }),
+          });
+
+          const result = await response.json();
+
+          if (!response.ok || !result.success) {
+            throw new Error(result.error || 'Failed to send contact request');
+          }
+
+          // If successful, break out of retry loop
+          lastError = null;
+          
+          // Log successful submission
+          console.log('Contact Form Submitted Successfully:', {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            companyName: values.companyName,
+            companyEmail: values.companyEmail,
+            companyContactNumber: values.companyContactNumber,
+            preferredTime: values.preferredTime,
+            attempt: attempt
+          });
+
+          // Show success message
+          setContactSubmitStatus({
+            show: true,
+            success: true,
+            message: 'Thank you for contacting us! We will get back to you soon.'
+          });
+
+          // Reset form after successful submission
+          resetForm();
+
+          // Close dialog after 2 seconds
+          setTimeout(() => {
+            setIsContactDialogOpen(false);
+            setContactSubmitStatus({ show: false, success: false, message: '' });
+          }, 2000);
+
+          return; // Exit the function on success
+
+        } catch (error) {
+          lastError = error;
+          console.error(`Attempt ${attempt} failed:`, error.message);
+
+          // If this is not the last attempt, wait before retrying
+          if (attempt < maxRetries) {
+            console.log(`Retrying in 1 second...`);
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second before retry
+          }
+        }
+      }
+
+      // If we get here, all retries failed
+      if (lastError) {
+        throw lastError;
+      }
+
+    } catch (error) {
+      console.error('Error submitting contact form after all retries:', error);
+      setContactSubmitStatus({
+        show: true,
+        success: false,
+        message: `Failed to submit contact request after ${maxRetries} attempts. Please check your connection and try again.`
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <section 
@@ -449,14 +746,448 @@ function AboutUsIntroComponent() {
               foundation engineering projects. Experience the difference expertise makes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="bg-white text-orange-600 hover:bg-gray-100 font-bold py-4 px-8 sm:px-12 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-lg flex items-center">
-                <Users className="w-5 h-5 mr-2" />
-                Join Our Team
-              </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-orange-600 font-bold py-4 px-8 sm:px-12 rounded-xl transition-all duration-300 text-lg flex items-center">
-                <Handshake className="w-5 h-5 mr-2" />
-                Contact Us
-              </button>
+              <Dialog open={isJobDialogOpen} onOpenChange={setIsJobDialogOpen}>
+                <DialogTrigger asChild>
+                  <button className="bg-white text-orange-600 hover:bg-gray-100 font-bold py-4 px-8 sm:px-12 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-lg flex items-center">
+                    <Users className="w-5 h-5 mr-2" />
+                    Join Our Team
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="bg-white dark:bg-gray-800 max-w-2xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+                      Join Our Team
+                    </DialogTitle>
+                    <DialogDescription className="text-gray-600 dark:text-gray-300">
+                      Fill out the form below to apply for a position at Patel Construction. We're always looking for talented individuals to join our growing team.
+                    </DialogDescription>
+                  </DialogHeader>
+                  
+                  <Formik
+                    initialValues={{
+                      firstName: "",
+                      lastName: "",
+                      email: "",
+                      phone: "",
+                      department: "",
+                      resume: null
+                    }}
+                    validationSchema={jobApplicationSchema}
+                    onSubmit={handleJobFormSubmit}
+                  >
+                    {({ values, errors, touched, setFieldValue, isSubmitting }) => (
+                      <Form className="space-y-6 mt-4">
+                        {/* Success/Error Message */}
+                        {submitStatus.show && (
+                          <div className={`p-4 rounded-lg flex items-center gap-2 ${
+                            submitStatus.success 
+                              ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200' 
+                              : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
+                          }`}>
+                            {submitStatus.success && <CheckCircle className="w-5 h-5" />}
+                            <p className="text-sm font-medium">{submitStatus.message}</p>
+                          </div>
+                        )}
+
+                        {/* Name Fields */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                              First Name <span className="text-red-500">*</span>
+                            </label>
+                            <Field
+                              type="text"
+                              id="firstName"
+                              name="firstName"
+                              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                                errors.firstName && touched.firstName 
+                                  ? 'border-red-500 dark:border-red-500' 
+                                  : 'border-gray-300 dark:border-gray-600'
+                              }`}
+                              placeholder="First name"
+                            />
+                            <ErrorMessage name="firstName" component="div" className="text-red-500 text-sm mt-1" />
+                          </div>
+                          <div>
+                            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                              Last Name <span className="text-red-500">*</span>
+                            </label>
+                            <Field
+                              type="text"
+                              id="lastName"
+                              name="lastName"
+                              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                                errors.lastName && touched.lastName 
+                                  ? 'border-red-500 dark:border-red-500' 
+                                  : 'border-gray-300 dark:border-gray-600'
+                              }`}
+                              placeholder="Last name"
+                            />
+                            <ErrorMessage name="lastName" component="div" className="text-red-500 text-sm mt-1" />
+                          </div>
+                        </div>
+
+                        {/* Email */}
+                        <div>
+                          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Email Address <span className="text-red-500">*</span>
+                          </label>
+                          <Field
+                            type="email"
+                            id="email"
+                            name="email"
+                            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                              errors.email && touched.email 
+                                ? 'border-red-500 dark:border-red-500' 
+                                : 'border-gray-300 dark:border-gray-600'
+                            }`}
+                            placeholder="email address"
+                          />
+                          <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+
+                        {/* Phone */}
+                        <div>
+                          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Phone Number <span className="text-red-500">*</span>
+                          </label>
+                          <Field
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                              errors.phone && touched.phone 
+                                ? 'border-red-500 dark:border-red-500' 
+                                : 'border-gray-300 dark:border-gray-600'
+                            }`}
+                            placeholder="phone number"
+                          />
+                          <ErrorMessage name="phone" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+
+                        {/* Department Dropdown */}
+                        <div>
+                          <label htmlFor="department" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Department <span className="text-red-500">*</span>
+                          </label>
+                          <Field
+                            as="select"
+                            id="department"
+                            name="department"
+                            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                              errors.department && touched.department 
+                                ? 'border-red-500 dark:border-red-500' 
+                                : 'border-gray-300 dark:border-gray-600'
+                            }`}
+                          >
+                            <option value="">Select a department</option>
+                            {departments.map((dept, index) => (
+                              <option key={index} value={dept}>
+                                {dept}
+                              </option>
+                            ))}
+                          </Field>
+                          <ErrorMessage name="department" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+
+                        {/* Resume Upload */}
+                        <div>
+                          <label htmlFor="resume" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Upload Resume <span className="text-red-500">*</span>
+                          </label>
+                          <div className="flex items-center gap-3">
+                            <label className="flex-1 cursor-pointer">
+                              <div className={`w-full px-4 py-2 border-2 border-dashed rounded-lg hover:border-orange-500 dark:hover:border-orange-400 transition-colors bg-gray-50 dark:bg-gray-700 ${
+                                errors.resume && touched.resume 
+                                  ? 'border-red-500 dark:border-red-500' 
+                                  : 'border-gray-300 dark:border-gray-600'
+                              }`}>
+                                <div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-300">
+                                  <Upload className="w-5 h-5" />
+                                  <span className="text-sm">
+                                    {values.resume ? values.resume.name : "Choose PDF file"}
+                                  </span>
+                                </div>
+                              </div>
+                              <input
+                                ref={fileInputRef}
+                                type="file"
+                                id="resume"
+                                accept=".pdf"
+                                onChange={(event) => {
+                                  const file = event.currentTarget.files[0];
+                                  setFieldValue("resume", file);
+                                }}
+                                className="hidden"
+                              />
+                            </label>
+                            {values.resume && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setFieldValue("resume", null);
+                                  if (fileInputRef.current) {
+                                    fileInputRef.current.value = '';
+                                  }
+                                }}
+                                className="p-2 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors"
+                                title="Remove file"
+                              >
+                                <X className="w-5 h-5" />
+                              </button>
+                            )}
+                          </div>
+                          {values.resume && !errors.resume && (
+                            <p className="mt-2 text-sm text-green-600 dark:text-green-400 flex items-center gap-1">
+                              <CheckCircle className="w-4 h-4" /> File selected: {values.resume.name} ({(values.resume.size / 1024 / 1024).toFixed(2)} MB)
+                            </p>
+                          )}
+                          <ErrorMessage name="resume" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+
+                        {/* Submit Button */}
+                        <div className="flex gap-3 pt-4">
+                          <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`flex-1 bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 ${
+                              isSubmitting 
+                                ? 'opacity-50 cursor-not-allowed' 
+                                : 'hover:bg-orange-700 transform hover:scale-[1.02]'
+                            }`}
+                          >
+                            {isSubmitting ? (
+                              <span className="flex items-center justify-center gap-2">
+                                <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Submitting...
+                              </span>
+                            ) : (
+                              'Submit Application'
+                            )}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsJobDialogOpen(false);
+                              setSubmitStatus({ show: false, success: false, message: '' });
+                            }}
+                            disabled={isSubmitting}
+                            className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </Form>
+                    )}
+                  </Formik>
+                </DialogContent>
+              </Dialog>
+              <Dialog open={isContactDialogOpen} onOpenChange={setIsContactDialogOpen}>
+                <DialogTrigger asChild>
+                  <button className="border-2 border-white text-white hover:bg-white hover:text-orange-600 font-bold py-4 px-8 sm:px-12 rounded-xl transition-all duration-300 text-lg flex items-center">
+                    <Handshake className="w-5 h-5 mr-2" />
+                    Contact Us
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="bg-white dark:bg-gray-800 max-w-2xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+                      Contact Us
+                    </DialogTitle>
+                    <DialogDescription className="text-gray-600 dark:text-gray-300">
+                      Fill out the form below and we'll get back to you at your preferred time.
+                    </DialogDescription>
+                  </DialogHeader>
+                  
+                  <Formik
+                    initialValues={{
+                      firstName: "",
+                      lastName: "",
+                      companyName: "",
+                      companyEmail: "",
+                      companyContactNumber: "",
+                      preferredTime: ""
+                    }}
+                    validationSchema={contactUsSchema}
+                    onSubmit={handleContactFormSubmit}
+                  >
+                    {({ values, errors, touched, isSubmitting }) => (
+                      <Form className="space-y-6 mt-4">
+                        {/* Success/Error Message */}
+                        {contactSubmitStatus.show && (
+                          <div className={`p-4 rounded-lg flex items-center gap-2 ${
+                            contactSubmitStatus.success 
+                              ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200' 
+                              : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
+                          }`}>
+                            {contactSubmitStatus.success && <CheckCircle className="w-5 h-5" />}
+                            <p className="text-sm font-medium">{contactSubmitStatus.message}</p>
+                          </div>
+                        )}
+
+                        {/* Name Fields */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="contactFirstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                              First Name <span className="text-red-500">*</span>
+                            </label>
+                            <Field
+                              type="text"
+                              id="contactFirstName"
+                              name="firstName"
+                              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                                errors.firstName && touched.firstName 
+                                  ? 'border-red-500 dark:border-red-500' 
+                                  : 'border-gray-300 dark:border-gray-600'
+                              }`}
+                              placeholder="First name"
+                            />
+                            <ErrorMessage name="firstName" component="div" className="text-red-500 text-sm mt-1" />
+                          </div>
+                          <div>
+                            <label htmlFor="contactLastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                              Last Name <span className="text-red-500">*</span>
+                            </label>
+                            <Field
+                              type="text"
+                              id="contactLastName"
+                              name="lastName"
+                              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                                errors.lastName && touched.lastName 
+                                  ? 'border-red-500 dark:border-red-500' 
+                                  : 'border-gray-300 dark:border-gray-600'
+                              }`}
+                              placeholder="Last name"
+                            />
+                            <ErrorMessage name="lastName" component="div" className="text-red-500 text-sm mt-1" />
+                          </div>
+                        </div>
+
+                        {/* Company Name */}
+                        <div>
+                          <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Company Name <span className="text-red-500">*</span>
+                          </label>
+                          <Field
+                            type="text"
+                            id="companyName"
+                            name="companyName"
+                            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                              errors.companyName && touched.companyName 
+                                ? 'border-red-500 dark:border-red-500' 
+                                : 'border-gray-300 dark:border-gray-600'
+                            }`}
+                            placeholder="Company name"
+                          />
+                          <ErrorMessage name="companyName" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+
+                        {/* Company Email */}
+                        <div>
+                          <label htmlFor="companyEmail" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Company Email Address <span className="text-red-500">*</span>
+                          </label>
+                          <Field
+                            type="email"
+                            id="companyEmail"
+                            name="companyEmail"
+                            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                              errors.companyEmail && touched.companyEmail 
+                                ? 'border-red-500 dark:border-red-500' 
+                                : 'border-gray-300 dark:border-gray-600'
+                            }`}
+                            placeholder="company@example.com"
+                          />
+                          <ErrorMessage name="companyEmail" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+
+                        {/* Company Contact Number */}
+                        <div>
+                          <label htmlFor="companyContactNumber" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Company Contact Number <span className="text-red-500">*</span>
+                          </label>
+                          <Field
+                            type="tel"
+                            id="companyContactNumber"
+                            name="companyContactNumber"
+                            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                              errors.companyContactNumber && touched.companyContactNumber 
+                                ? 'border-red-500 dark:border-red-500' 
+                                : 'border-gray-300 dark:border-gray-600'
+                            }`}
+                            placeholder="10 digit contact number"
+                          />
+                          <ErrorMessage name="companyContactNumber" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+
+                        {/* Preferred Time */}
+                        <div>
+                          <label htmlFor="preferredTime" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Preferred Time to Contact <span className="text-red-500">*</span>
+                          </label>
+                          <Field
+                            as="select"
+                            id="preferredTime"
+                            name="preferredTime"
+                            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                              errors.preferredTime && touched.preferredTime 
+                                ? 'border-red-500 dark:border-red-500' 
+                                : 'border-gray-300 dark:border-gray-600'
+                            }`}
+                          >
+                            <option value="">Select preferred time</option>
+                            {preferredTimes.map((time, index) => (
+                              <option key={index} value={time}>
+                                {time}
+                              </option>
+                            ))}
+                          </Field>
+                          <ErrorMessage name="preferredTime" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+
+                        {/* Submit Button */}
+                        <div className="flex gap-3 pt-4">
+                          <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`flex-1 bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 ${
+                              isSubmitting 
+                                ? 'opacity-50 cursor-not-allowed' 
+                                : 'hover:bg-orange-700 transform hover:scale-[1.02]'
+                            }`}
+                          >
+                            {isSubmitting ? (
+                              <span className="flex items-center justify-center gap-2">
+                                <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Submitting...
+                              </span>
+                            ) : (
+                              'Submit Request'
+                            )}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsContactDialogOpen(false);
+                              setContactSubmitStatus({ show: false, success: false, message: '' });
+                            }}
+                            disabled={isSubmitting}
+                            className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </Form>
+                    )}
+                  </Formik>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
