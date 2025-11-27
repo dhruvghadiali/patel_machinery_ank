@@ -102,7 +102,8 @@ const companyStats = [
 ];
 
 const contactInfo = {
-  phone: "+91 96017 51259", 
+  phone1: "+91 96017 51259", 
+  phone2: "+91 96249 66395",
   email: "patelconstruction13@gmail.com", 
   addressLines: [
     "B-59 TO 62 Signature Galleria,", 
@@ -659,10 +660,17 @@ function AboutUsIntroComponent() {
                   <div>
                     <h4 className="text-lg font-bold text-gray-900 dark:text-white">Contact Number</h4>
                     <a
-                      href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+                      href={`tel:${contactInfo.phone1.replace(/\s/g, "")}`}
                       className="text-orange-600 dark:text-orange-400 font-medium hover:underline"
                     >
-                      {contactInfo.phone}
+                      {contactInfo.phone1}
+                    </a>
+                    <br/>
+                    <a
+                      href={`tel:${contactInfo.phone2.replace(/\s/g, "")}`}
+                      className="text-orange-600 dark:text-orange-400 font-medium hover:underline"
+                    >
+                      {contactInfo.phone2}
                     </a>
                   </div>
                 </div>
