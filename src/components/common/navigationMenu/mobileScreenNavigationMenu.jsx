@@ -17,20 +17,24 @@ function MobileScreenNavigationMenuComponent({ navigationLinks }) {
 
   const handleNavigation = (event, href) => {
     event.preventDefault();
+
+    const target = document.getElementById(href.slice(1));
     setIsOpen(false);
 
-    window.setTimeout(() => {
-      window.history.pushState(null, "", href);
-      const target = document.querySelector(href);
+    if (!target) {
+      return;
+    }
 
-      if (target) {
-        const headerOffset = 64;
-        const targetTop =
-          target.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.history.pushState(null, "", href);
 
-        window.scrollTo({ top: targetTop, behavior: "auto" });
-      }
-    }, 100);
+    window.requestAnimationFrame(() => {
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
+
+      root.style.scrollBehavior = "auto";
+      target.scrollIntoView({ block: "start" });
+      root.style.scrollBehavior = previousScrollBehavior;
+    });
   };
 
   return (
@@ -69,7 +73,11 @@ function MobileScreenNavigationMenuComponent({ navigationLinks }) {
           </svg>
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="start" className="w-64 p-1 mt-3 lg:hidden">
+      <PopoverContent
+        align="start"
+        className="w-64 p-1 mt-3 lg:hidden"
+        onCloseAutoFocus={(event) => event.preventDefault()}
+      >
         <NavigationMenu className="max-w-none *:w-full">
           <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
             {navigationLinks.map((link, index) => (
