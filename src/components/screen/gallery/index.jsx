@@ -57,7 +57,7 @@ function GalleryVideoPreview({ src, isActive }) {
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="none"
       aria-label="Patel Construction project gallery video"
     />
   );
@@ -106,25 +106,48 @@ function GalleryIntroComponent() {
     };
   }, [isLightboxOpen]);
 
-  const selectImage = (index, element) => {
-    setActiveImage(index);
-
-    if (window.matchMedia("(max-width: 1023px)").matches) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
-      });
+  useEffect(() => {
+    if (!window.matchMedia("(max-width: 1023px)").matches) {
+      return undefined;
     }
+
+    const centerTimer = window.setTimeout(() => {
+      const strip = galleryRef.current;
+      const activeCard = strip?.querySelector(
+        `[data-gallery-index="${activeImage}"]`
+      );
+
+      if (!strip || !activeCard) {
+        return;
+      }
+
+      const stripRect = strip.getBoundingClientRect();
+      const cardRect = activeCard.getBoundingClientRect();
+      const cardLeftInsideStrip =
+        cardRect.left - stripRect.left + strip.scrollLeft;
+      const centeredScrollLeft =
+        cardLeftInsideStrip - (strip.clientWidth - cardRect.width) / 2;
+
+      strip.scrollTo({
+        left: Math.max(0, centeredScrollLeft),
+        behavior: "smooth",
+      });
+    }, 380);
+
+    return () => window.clearTimeout(centerTimer);
+  }, [activeImage]);
+
+  const selectImage = (index) => {
+    setActiveImage(index);
   };
 
-  const handleImageClick = (index, element) => {
+  const handleImageClick = (index) => {
     if (activeImage === index) {
       setLightboxImage(index);
       return;
     }
 
-    selectImage(index, element);
+    selectImage(index);
   };
 
   const showPreviousImage = (event) => {
@@ -191,10 +214,9 @@ function GalleryIntroComponent() {
                     galleryItems.length
                   }`}
                   aria-pressed={isActive}
+                  data-gallery-index={index}
                   className={`gallery-card ${isActive ? "is-active" : ""}`}
-                  onClick={(event) =>
-                    handleImageClick(index, event.currentTarget)
-                  }
+                  onClick={() => handleImageClick(index)}
                   onMouseEnter={() => setActiveImage(index)}
                 >
                   {isVideo ? (
@@ -207,7 +229,9 @@ function GalleryIntroComponent() {
                       src={item.src}
                       alt={`Patel Construction project gallery photo ${itemNumber}`}
                       className="gallery-card-image"
-                      loading={index < 3 ? "eager" : "lazy"}
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
                     />
                   )}
                   <span className="gallery-card-shade" aria-hidden="true" />
@@ -287,7 +311,7 @@ function GalleryIntroComponent() {
                 controls
                 autoPlay
                 playsInline
-                preload="metadata"
+                preload="auto"
                 aria-label={`Patel Construction project gallery video ${lightboxNumber}`}
                 onClick={(event) => event.stopPropagation()}
               />
@@ -297,6 +321,8 @@ function GalleryIntroComponent() {
                 src={galleryItems[lightboxImage].src}
                 alt={`Patel Construction project gallery photo ${lightboxNumber}`}
                 className="max-h-[calc(100dvh-10rem)] max-w-full rounded-xl object-contain shadow-2xl sm:max-h-[calc(100dvh-8rem)] sm:rounded-2xl md:max-w-[88vw] lg:max-w-[82vw] lg:rounded-3xl 2xl:max-w-[78vw]"
+                decoding="async"
+                fetchPriority="high"
                 onClick={(event) => event.stopPropagation()}
               />
             )}

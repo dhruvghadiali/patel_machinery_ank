@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
 import loadingImage from "@Assets/json/loading-img-01.json";
 
-const ScreenLoaderComponent = () => {
+const ScreenLoaderComponent = ({ progress = 0 }) => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-white text-foreground px-4 transition-colors duration-300">
       <div className="flex flex-col items-center">
@@ -27,6 +27,18 @@ const ScreenLoaderComponent = () => {
               style={{ animationDelay: "0.2s" }}
             />
           </div>
+        </div>
+
+        <div className="mt-5 w-44 sm:w-56">
+          <div className="h-1.5 overflow-hidden rounded-full bg-orange-100">
+            <div
+              className="h-full rounded-full bg-orange-500 transition-[width] duration-300 ease-out"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <p className="mt-2 text-center text-xs font-medium tabular-nums text-gray-500">
+            {progress}% ready
+          </p>
         </div>
       </div>
     </div>
