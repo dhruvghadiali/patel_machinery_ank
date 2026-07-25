@@ -6,6 +6,7 @@ import ClientsIntroComponent from "@ScreenComponents/clients";
 import EquipmentIntroComponent from "@ScreenComponents/equipment";
 import AwardsIntroComponent from "@ScreenComponents/awards";
 import ProjectsIntroComponent from "@ScreenComponents/projects";
+import GalleryIntroComponent from "@ScreenComponents/gallery";
 import AboutUsIntroComponent from "@ScreenComponents/aboutus";
 
 export default function HomePage() {
@@ -84,6 +85,15 @@ export default function HomePage() {
             : 'opacity-0 translate-y-12'
         }`}>
           <ProjectsIntroComponent />
+        </div>
+
+        {/* Gallery section */}
+        <div className={`transition-all duration-1000 delay-1500 ease-out  ${
+          isPageLoaded
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-12'
+        }`}>
+          <GalleryIntroComponent />
         </div>
 
         {/* About Us section */}

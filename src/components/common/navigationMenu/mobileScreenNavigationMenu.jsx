@@ -10,12 +10,38 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@ShadcnComponents/popover";
+import { useState } from "react";
 
 function MobileScreenNavigationMenuComponent({ navigationLinks }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleNavigation = (event, href) => {
+    event.preventDefault();
+    setIsOpen(false);
+
+    window.setTimeout(() => {
+      window.history.pushState(null, "", href);
+      const target = document.querySelector(href);
+
+      if (target) {
+        const headerOffset = 64;
+        const targetTop =
+          target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+        window.scrollTo({ top: targetTop, behavior: "auto" });
+      }
+    }, 100);
+  };
+
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button className="group size-8 lg:hidden text-white hover:text-orange-100 hover:bg-orange-600 transition-all duration-200" variant="ghost" size="icon">
+        <Button
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          className="group size-8 lg:hidden text-white hover:text-orange-100 hover:bg-orange-600 transition-all duration-200"
+          variant="ghost"
+          size="icon"
+        >
           <svg
             className="pointer-events-none"
             width={16}
@@ -58,6 +84,9 @@ function MobileScreenNavigationMenuComponent({ navigationLinks }) {
                         <li key={itemIndex}>
                           <NavigationMenuLink
                             href={item.href}
+                            onClick={(event) =>
+                              handleNavigation(event, item.href)
+                            }
                             className="py-1.5 text-gray-700 hover:text-orange hover:bg-orange-50 px-2 rounded transition-all duration-200"
                           >
                             {item.label}
@@ -67,7 +96,11 @@ function MobileScreenNavigationMenuComponent({ navigationLinks }) {
                     </ul>
                   </>
                 ) : (
-                  <NavigationMenuLink href={link.href} className="py-1.5 text-gray-700 hover:text-orange hover:bg-orange-50 px-2 rounded transition-all duration-200">
+                  <NavigationMenuLink
+                    href={link.href}
+                    onClick={(event) => handleNavigation(event, link.href)}
+                    className="py-1.5 text-gray-700 hover:text-orange hover:bg-orange-50 px-2 rounded transition-all duration-200"
+                  >
                     {link.label}
                   </NavigationMenuLink>
                 )}

@@ -34,6 +34,7 @@ const navigationLinks = [
   { href: "#equipment", label: "Equipment" },
   { href: "#awards", label: "Awards" },
   { href: "#projects", label: "Projects" },
+  { href: "#gallery", label: "Gallery" },
   { href: "#about-us", label: "About us" },
 ];
 
