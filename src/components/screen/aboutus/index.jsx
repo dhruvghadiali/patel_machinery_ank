@@ -102,9 +102,10 @@ const companyStats = [
 ];
 
 const contactInfo = {
-  phone1: "+91 96017 51259", 
+  phone1: "+91 80146 66660", 
   phone2: "+91 96249 66395",
-  email: "patelconstruction13@gmail.com", 
+  email1: "patelconstruction13@gmail.com",
+  email2: "officepatelconstruction@gmail.com",
   addressLines: [
     "B-59 TO 62 Signature Galleria,", 
     "Mahavir Tarning Ankleshwar-393002",
@@ -687,7 +688,14 @@ function AboutUsIntroComponent() {
                       href={`mailto:${contactInfo.email}`}
                       className="text-orange-600 dark:text-orange-400 font-medium hover:underline break-all"
                     >
-                      {contactInfo.email}
+                      {contactInfo.email1}
+                    </a>
+                    <br/>
+                    <a
+                      href={`mailto:${contactInfo.email}`}
+                      className="text-orange-600 dark:text-orange-400 font-medium hover:underline break-all"
+                    >
+                      {contactInfo.email2}
                     </a>
                   </div>
                 </div>
